@@ -112,14 +112,7 @@ button {
     font-weight: 900;
     letter-spacing: -0.09em;
 }
-/* Individual letters inside the preload logo */
 
-.loader-letter {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(30px);
-    filter: blur(8px);
-}
 .loader-subtitle {
     margin-top: 12px;
 
