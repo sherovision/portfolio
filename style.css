@@ -44,7 +44,7 @@ button {
 ========================================================= */
 
 .blue-text {
-    color: #00f0ff;
+    color: #2f7dff;
 }
 
 .section-label {
@@ -142,7 +142,7 @@ button {
     width: 0;
     height: 100%;
 
-    background: #00f0ff;
+    background: #2f7dff;
 }
 
 .loader-percentage {
@@ -345,7 +345,7 @@ button {
 }
 
 .hero-title em {
-    color: #00f0ff;
+    color: #2f7dff;
 
     font-family: "Playfair Display", serif;
     font-weight: 500;
@@ -452,7 +452,7 @@ button {
 }
 
 .intro-content h2 em {
-    color: #00f0ff;
+    color: #2f7dff;
 
     font-family: "Playfair Display", serif;
     font-weight: 500;
@@ -498,7 +498,7 @@ button {
 }
 
 .showcase-header h2 span {
-    color: #00f0ff;
+    color: #2f7dff;
 }
 
 .showcase-header p {
@@ -760,7 +760,7 @@ button {
 }
 
 .featured-content h2 em {
-    color: #00f0ff;
+    color: #2f7dff;
 
     font-family: "Playfair Display", serif;
     font-weight: 500;
@@ -810,7 +810,7 @@ button {
 }
 
 .services-layout > h2 span {
-    color: #00f0ff;
+    color: #2f7dff;
 }
 
 .services-list {
@@ -855,7 +855,7 @@ button {
 }
 
 .services-list a:hover strong {
-    color: #00f0ff;
+    color: #2f7dff;
 }
 
 
@@ -934,7 +934,7 @@ button {
 }
 
 .review-stars {
-    color: #00f0ff;
+    color: #2f7dff;
 
     font-size: 12px;
 
@@ -1011,7 +1011,7 @@ button {
 }
 
 .about-layout > h2 span {
-    color: #00f0ff;
+    color: #2f7dff;
 }
 
 .about-large-text {
@@ -1111,7 +1111,7 @@ button {
 }
 
 .contact-section h2 span {
-    color: #00f0ff;
+    color: #2f7dff;
 }
 
 .contact-button {
