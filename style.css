@@ -180,10 +180,18 @@ button {
 .site-logo {
     display: block;
 
-    font-size: 15px;
-    font-weight: 900;
-    line-height: 0.78;
-    letter-spacing: -0.08em;
+    width: 100px;
+
+    line-height: 0;
+}
+
+.site-logo img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
 }
 
 .site-logo span {
