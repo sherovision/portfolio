@@ -1,545 +1,516 @@
-/* ==========================================================================
-   SHERO VISION — main script
-   Sections: 0 setup · 1 preloader · 2 smooth scroll · 3 cursor · 4 nav
-   5 hero · 6 selected work · 7 horizontal work · 8 services · 9 kinetic
-   10 about · 11 video · 12 process · 13 marquee · 14 magnetic · 15 contact
-   16 page transitions · 17 back to top
-   ========================================================================== */
-(() => {
-  "use strict";
+/* =====================================================
+   SHERO VISION — style.css
+   Dark / editorial / futuristic creative agency aesthetic
+   ===================================================== */
 
-  /* ---------- 0. SETUP ---------------------------------------------------- */
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-  const isMobile = window.innerWidth < 768;
+:root {
+  --bg: #080808;
+  --text: #f2f2ee;
+  --muted: rgba(242, 242, 238, 0.55);
+  --accent: #2f6bff;
+  --accent-bright: #4d82ff;
+  --line: rgba(242, 242, 238, 0.12);
+  --font: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.defaults({ ease: "power3.out" });
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-  if (isTouch) document.body.classList.add("no-custom-cursor");
+html { background: var(--bg); }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
 
-  /* ---------- 1. PRELOADER -------------------------------------------------
-     Builds "S -> SH -> ... -> SHERO VISION", counts 00->100, then splits
-     the screen and reveals the hero underneath.                            */
-  function runPreloader() {
-    return new Promise((resolve) => {
-      const preloader = document.getElementById("preloader");
-      const wordEl = document.getElementById("preloaderWord");
-      const subEl = document.getElementById("preloaderSub");
-      const countEl = document.getElementById("preloaderCount");
-      const lineEl = preloader.querySelector(".preloader-line");
-      const full = "SHERO VISION";
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 
-      document.body.style.overflow = "hidden";
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font-family: inherit; background: none; border: none; color: inherit; cursor: pointer; }
 
-      if (reduceMotion) {
-        preloader.style.display = "none";
-        document.body.style.overflow = "";
-        resolve();
-        return;
-      }
+::selection { background: var(--accent); color: var(--bg); }
 
-      const panelL = document.getElementById("preloaderPanelL");
-      const panelR = document.getElementById("preloaderPanelR");
-      const inner = document.getElementById("preloaderInner");
+/* ---------- Section titles ---------- */
+.section-title {
+  font-size: clamp(2.4rem, 7vw, 7rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  padding: 0 5vw;
+  margin-bottom: 8vh;
+}
+.section-title em { font-style: normal; color: var(--accent); }
 
-      const counter = { v: 0 };
-      const tl = gsap.timeline({
-        onComplete: () => {
-          preloader.style.display = "none";
-          document.body.style.overflow = "";
-          resolve();
-        },
-      });
+/* =====================================================
+   PRELOADER
+   ===================================================== */
+.preloader {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: all;
+}
+.preloader__panel {
+  position: absolute; top: 0; bottom: 0; width: 50.5%;
+  background: #050505;
+}
+.preloader__panel--left { left: 0; }
+.preloader__panel--right { right: 0; }
+.preloader__inner { position: relative; z-index: 2; text-align: center; }
+.preloader__logo {
+  font-size: clamp(2.2rem, 7vw, 6rem);
+  font-weight: 700; letter-spacing: -0.02em; line-height: 1;
+  min-height: 1.1em;
+}
+.preloader__word { display: inline-block; }
+.preloader__sub {
+  margin-top: 1.4rem; font-size: 0.8rem; letter-spacing: 0.5em;
+  color: var(--muted); opacity: 0;
+}
+.preloader__counter {
+  position: fixed; bottom: 4vh; right: 5vw;
+  font-size: clamp(2rem, 5vw, 4rem); font-weight: 300; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
 
-      // letter-by-letter buildup: S, SH, SHE, SHER, SHERO, SHERO VISION
-      full.split("").forEach((_, i) => {
-        tl.call(() => { wordEl.textContent = full.slice(0, i + 1); }, null, i * 0.055);
-      });
+/* =====================================================
+   PAGE TRANSITION
+   ===================================================== */
+.transition {
+  position: fixed; inset: 0; z-index: 900; pointer-events: none;
+  visibility: hidden;
+}
+.transition__panel {
+  position: absolute; inset: 0;
+  background: #050505;
+  transform: translateY(100%) skewY(-6deg);
+  transform-origin: left top;
+}
+.transition__word {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: clamp(2rem, 6vw, 5rem); font-weight: 700; letter-spacing: -0.02em;
+  opacity: 0;
+}
 
-      tl.to(subEl, { opacity: 1, duration: 0.5 }, "-=0.2")
-        .to(counter, {
-          v: 100,
-          duration: 1.4,
-          ease: "power2.inOut",
-          onUpdate: () => { countEl.textContent = String(Math.floor(counter.v)).padStart(2, "0") + "%"; },
-        }, "<")
-        .to(lineEl, { scaleX: 1, duration: 1.4, ease: "power2.inOut" }, "<")
-        // logo moves upward, screen splits vertically, hero revealed beneath
-        .to(inner, { y: -40, opacity: 0, duration: 0.5, ease: "power3.inOut" }, ">-0.1")
-        .to(countEl, { opacity: 0, duration: 0.3 }, "<")
-        .to(panelL, { xPercent: -100, duration: 0.9, ease: "power4.inOut" }, ">-0.1")
-        .to(panelR, { xPercent: 100, duration: 0.9, ease: "power4.inOut" }, "<");
-    });
+/* =====================================================
+   CUSTOM CURSOR
+   ===================================================== */
+.cursor { position: fixed; inset: 0; z-index: 950; pointer-events: none; }
+.cursor__dot {
+  position: absolute; top: 0; left: 0; width: 10px; height: 10px;
+  background: #fff; border-radius: 50%;
+}
+.cursor__ring {
+  position: absolute; top: 0; left: 0; width: 44px; height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: width 0.35s var(--ease-out), height 0.35s var(--ease-out),
+              background-color 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+}
+.cursor__label {
+  font-size: 0.7rem; letter-spacing: 0.2em; font-weight: 600;
+  opacity: 0; transition: opacity 0.3s;
+  color: var(--bg);
+}
+.cursor--link .cursor__ring { width: 64px; height: 64px; }
+.cursor--view .cursor__ring {
+  width: 110px; height: 110px; background: var(--text);
+  border-color: var(--text);
+}
+.cursor--view .cursor__label { opacity: 1; }
+.cursor--hidden .cursor__dot, .cursor--hidden .cursor__ring { opacity: 0; }
+@media (hover: none), (max-width: 1023px) { .cursor { display: none; } }
+
+body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 800;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 2rem 5vw;
+  transition: padding 0.5s var(--ease-out), background-color 0.5s, backdrop-filter 0.5s;
+}
+.nav--scrolled {
+  padding: 1rem 5vw;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav__logo {
+  font-weight: 700; letter-spacing: 0.04em; font-size: 1.05rem;
+  transition: transform 0.5s var(--ease-out);
+  display: inline-block;
+}
+.nav--scrolled .nav__logo { transform: scale(0.85); transform-origin: left center; }
+.nav__links { display: flex; gap: 3rem; }
+.nav__link {
+  font-size: 0.78rem; letter-spacing: 0.25em; overflow: hidden; display: inline-block;
+}
+.nav__link span { display: inline-block; transition: color 0.3s; }
+.nav__link::after {
+  content: ''; display: block; height: 1px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.45s var(--ease-out);
+}
+.nav__link:hover span { color: var(--accent-bright); }
+.nav__link:hover::after { transform: scaleX(1); }
+
+.nav__burger { display: none; flex-direction: column; gap: 7px; padding: 8px; z-index: 860; }
+.nav__burger span { display: block; width: 30px; height: 2px; background: var(--text); transition: transform 0.4s var(--ease-out); }
+.nav__burger.is-open span:first-child { transform: translateY(4.5px) rotate(45deg); }
+.nav__burger.is-open span:last-child { transform: translateY(-4.5px) rotate(-45deg); }
+
+@media (max-width: 1023px) {
+  .nav__links { display: none; }
+  .nav__burger { display: flex; }
+}
+
+/* ---------- Mobile menu ---------- */
+.menu {
+  position: fixed; inset: 0; z-index: 850; background: #050505;
+  display: flex; flex-direction: column; justify-content: center; padding: 0 8vw;
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+}
+.menu__close {
+  position: absolute; top: 2rem; right: 5vw; font-size: 0.75rem;
+  letter-spacing: 0.3em; color: var(--muted);
+}
+.menu__links { display: flex; flex-direction: column; gap: 1.2vh; }
+.menu__link {
+  font-size: clamp(2.6rem, 11vw, 5rem); font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.02em; overflow: hidden; display: inline-block;
+  transform: translateY(120%);
+}
+.menu__foot {
+  position: absolute; bottom: 3rem; left: 8vw; right: 8vw;
+  font-size: 0.7rem; letter-spacing: 0.3em; color: var(--muted);
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+.hero {
+  position: relative; min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden;
+}
+.hero__media { position: absolute; inset: 0; z-index: 1; }
+.hero__img { position: absolute; overflow: hidden; will-change: transform; }
+.hero__img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
+.hero__img--1 { top: 8%; right: 6%; width: 26vw; min-width: 220px; aspect-ratio: 7/9; }
+.hero__img--2 { bottom: 6%; left: 4%; width: 20vw; min-width: 170px; aspect-ratio: 6/8; }
+.hero__img--3 { top: 38%; right: 30%; width: 16vw; min-width: 140px; aspect-ratio: 6/8; }
+@media (max-width: 1023px) {
+  .hero__img--1 { width: 44vw; top: 12%; }
+  .hero__img--2 { width: 36vw; }
+  .hero__img--3 { display: none; }
+}
+
+.hero__content { position: relative; z-index: 2; padding: 0 5vw; will-change: transform; }
+.hero__line {
+  font-size: clamp(2.6rem, 9vw, 9.5rem);
+  font-weight: 700; line-height: 1.02; letter-spacing: -0.03em;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+.hero__line--indent { padding-left: 9vw; }
+.hero__word { display: inline-block; will-change: transform, opacity, filter; }
+.hero__meta {
+  position: absolute; z-index: 2; bottom: 4vh;
+  font-size: 0.7rem; letter-spacing: 0.35em; color: var(--muted);
+}
+.hero__meta--left { left: 5vw; }
+.hero__meta--right { right: 5vw; display: flex; align-items: center; gap: 0.6rem; }
+.hero__arrow { display: inline-block; animation: bob 2s var(--ease-out) infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+/* =====================================================
+   SELECTED WORK
+   ===================================================== */
+.work { padding: 16vh 0 8vh; }
+.project {
+  position: relative; padding: 0 5vw; margin-bottom: 16vh;
+  display: grid; grid-template-columns: 1fr; gap: 1.4rem;
+}
+.project--large { width: min(88vw, 1500px); }
+.project--small { width: min(56vw, 700px); margin-left: auto; margin-right: 5vw; margin-top: -8vh; }
+.project--offset { margin-left: 5vw; margin-right: auto; margin-top: 4vh; }
+.project--offset2 { margin-left: auto; margin-right: 8vw; }
+@media (max-width: 1023px) {
+  .project, .project--large, .project--small,
+  .project--offset, .project--offset2 { width: 90vw; margin: 0 auto 10vh; }
+}
+
+.project__media { position: relative; overflow: hidden; display: block; }
+.project__mask { overflow: hidden; }
+.project__mask img {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.15); opacity: 0; will-change: transform, opacity;
+  transition: transform 1s var(--ease-out);
+}
+.project__media:hover .project__mask img { transform: scale(1.08) translate(1.5%, -1%); }
+.project__overlay {
+  position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,0.65), transparent 55%);
+  opacity: 0; transition: opacity 0.6s var(--ease-out);
+}
+.project__media:hover .project__overlay { opacity: 1; }
+
+.project__info {
+  display: flex; align-items: baseline; gap: 1.6rem; border-top: 1px solid var(--line);
+  padding-top: 1.1rem;
+}
+.project__num { font-size: 0.8rem; color: var(--accent); font-weight: 600; letter-spacing: 0.15em; }
+.project__meta { flex: 1; }
+.project__title {
+  font-size: clamp(1.6rem, 3.4vw, 3rem); font-weight: 700; letter-spacing: -0.02em;
+  transition: transform 0.5s var(--ease-out);
+}
+.project__media:hover ~ .project__info .project__title { transform: translateX(10px); }
+.project__cat {
+  font-size: 0.72rem; letter-spacing: 0.3em; color: var(--muted);
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.5s var(--ease-out) 0.05s, transform 0.5s var(--ease-out) 0.05s;
+}
+.project__media:hover ~ .project__info .project__cat { opacity: 1; transform: translateY(0); }
+.project__year { font-size: 0.78rem; color: var(--muted); }
+
+/* =====================================================
+   HORIZONTAL SCROLL
+   ===================================================== */
+.hscroll { position: relative; }
+.hscroll__pin {
+  height: 100vh; height: 100svh; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hscroll__head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 0 5vw; margin-bottom: 4vh;
+}
+.hscroll__head .section-title { padding: 0; margin: 0; }
+.hscroll__hint { font-size: 0.72rem; letter-spacing: 0.35em; color: var(--muted); }
+.hscroll__track {
+  display: flex; gap: 5vw; padding: 0 5vw;
+  width: max-content; will-change: transform;
+}
+.hpanel { width: 72vw; flex-shrink: 0; }
+.hpanel__num { font-size: 0.72rem; letter-spacing: 0.3em; color: var(--accent); display: block; margin-bottom: 0.8rem; }
+.hpanel__media { overflow: hidden; }
+.hpanel__media img {
+  width: 100%; aspect-ratio: 14/8.5; object-fit: cover;
+  transition: transform 1s var(--ease-out);
+}
+.hpanel:hover .hpanel__media img { transform: scale(1.06); }
+.hpanel__meta { display: flex; align-items: baseline; justify-content: space-between; margin-top: 1rem; border-top: 1px solid var(--line); padding-top: 0.9rem; }
+.hpanel__meta h3 { font-size: clamp(1.4rem, 2.6vw, 2.4rem); letter-spacing: -0.02em; }
+.hpanel__meta p { font-size: 0.72rem; letter-spacing: 0.3em; color: var(--muted); }
+
+@media (max-width: 1023px) {
+  .hscroll__pin { height: auto; padding: 10vh 0; }
+  .hscroll__track {
+    flex-direction: column; width: 100%; gap: 8vh;
   }
+  .hpanel { width: 90vw; margin: 0 auto; }
+}
 
-  /* ---------- 2. SMOOTH SCROLL (Lenis) ------------------------------------ */
-  let lenis;
-  function initSmoothScroll() {
-    if (reduceMotion || typeof Lenis === "undefined") return;
-    lenis = new Lenis({
-      duration: 1.1,
-      smoothWheel: true,
-      touchMultiplier: isMobile ? 1 : 1.4,
-      lerp: isMobile ? 0.14 : 0.1,
-    });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
-  }
+/* =====================================================
+   SERVICES
+   ===================================================== */
+.services { padding: 16vh 0; position: relative; }
+.services__list { border-top: 1px solid var(--line); }
+.service {
+  display: flex; align-items: baseline; gap: 2.5vw;
+  padding: 2.2vh 5vw; border-bottom: 1px solid var(--line);
+  transition: opacity 0.4s var(--ease-out);
+  cursor: default;
+}
+.service__num { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+.service__name {
+  font-size: clamp(1.8rem, 5.2vw, 4.6rem); font-weight: 700; letter-spacing: -0.03em;
+  line-height: 1.05; text-transform: uppercase;
+  transition: transform 0.5s var(--ease-out), color 0.4s;
+}
+.services__list:hover .service { opacity: 0.25; }
+.services__list .service:hover { opacity: 1; }
+.services__list .service:hover .service__name { transform: translateX(2vw) scale(1.03); color: var(--accent-bright); }
 
-  function scrollTo(target, opts = {}) {
-    if (lenis) lenis.scrollTo(target, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4), ...opts });
-    else document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
-  }
+.services__hover {
+  position: fixed; top: 0; left: 0; z-index: 5; pointer-events: none;
+  width: min(30vw, 460px); aspect-ratio: 3/2; overflow: hidden;
+  opacity: 0; visibility: hidden;
+  will-change: transform, opacity;
+}
+.services__hover img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 1023px) { .services__hover { display: none; } }
 
-  /* ---------- 3. CUSTOM CURSOR -------------------------------------------- */
-  function initCursor() {
-    if (isTouch) return;
-    const dot = document.getElementById("cursorDot");
-    const ring = document.getElementById("cursorRing");
-    const cursorRoot = document.getElementById("cursor");
-    const label = document.getElementById("cursorLabel");
+/* =====================================================
+   KINETIC TYPOGRAPHY
+   ===================================================== */
+.kinetic {
+  padding: 22vh 5vw; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.kinetic__word {
+  font-size: clamp(3.4rem, 13vw, 13rem); font-weight: 700;
+  line-height: 0.95; letter-spacing: -0.04em; text-transform: uppercase;
+  will-change: transform, opacity;
+}
+.kinetic__word--right { align-self: flex-end; color: var(--accent); }
+.kinetic__word:last-child { align-self: center; }
 
-    const pos = { x: innerWidth / 2, y: innerHeight / 2 };
-    const ringPos = { x: pos.x, y: pos.y };
+/* =====================================================
+   ABOUT
+   ===================================================== */
+.about {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6vw;
+  padding: 16vh 5vw; border-top: 1px solid var(--line);
+}
+@media (max-width: 1023px) { .about { grid-template-columns: 1fr; } }
+.about__title { font-size: clamp(2.4rem, 6vw, 5.6rem); line-height: 1; letter-spacing: -0.03em; font-weight: 700; }
+.about__title em { font-style: normal; color: var(--accent); }
+.about__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 8vh; }
+.stat__num {
+  display: block; font-size: clamp(2.4rem, 5vw, 4.6rem); font-weight: 700; line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat__label { font-size: 0.72rem; letter-spacing: 0.3em; color: var(--muted); display: block; margin-top: 0.5rem; }
+.about__right { display: flex; align-items: center; }
+.about__text { font-size: clamp(1.15rem, 2vw, 1.7rem); line-height: 1.55; font-weight: 300; color: var(--muted); }
+.about__text .line { display: block; overflow: hidden; }
+.about__text .line > span { display: inline-block; will-change: transform; }
 
-    window.addEventListener("mousemove", (e) => {
-      pos.x = e.clientX; pos.y = e.clientY;
-      gsap.set(dot, { x: pos.x, y: pos.y });
-    });
+/* =====================================================
+   VIDEO
+   ===================================================== */
+.video { padding: 8vh 5vw 16vh; }
+.video__wrap {
+  position: relative; overflow: hidden; cursor: pointer;
+  will-change: transform, opacity;
+}
+.video__wrap video { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.video__overlay {
+  position: absolute; inset: 0; background: rgba(5, 5, 5, 0.45);
+  transition: opacity 0.5s;
+}
+.video__wrap:hover .video__overlay { opacity: 0.25; }
+.video__wrap:hover { transform: scale(1.01); }
+.video__play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 110px; height: 110px; border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.5s var(--ease-out), background-color 0.4s, color 0.4s;
+  color: var(--text);
+}
+.video__playIcon { font-size: 1.4rem; margin-left: 4px; }
+.video__wrap:hover .video__play { transform: translate(-50%, -50%) scale(1.18); background: var(--text); color: var(--bg); }
 
-    gsap.ticker.add(() => {
-      ringPos.x += (pos.x - ringPos.x) * 0.16;
-      ringPos.y += (pos.y - ringPos.y) * 0.16;
-      gsap.set(ring, { x: ringPos.x, y: ringPos.y });
-    });
+/* =====================================================
+   PROCESS
+   ===================================================== */
+.process { padding: 8vh 5vw 16vh; }
+.process__list { border-top: 1px solid var(--line); }
+.pstep {
+  display: grid; grid-template-columns: 8rem 1fr 1.2fr; gap: 3vw; align-items: baseline;
+  padding: 4vh 0; border-bottom: 1px solid var(--line);
+  opacity: 0.18; transition: opacity 0.6s var(--ease-out);
+}
+.pstep.is-active { opacity: 1; }
+.pstep__num { font-size: 0.85rem; color: var(--accent); font-weight: 600; letter-spacing: 0.15em; }
+.pstep__name { font-size: clamp(1.8rem, 4.4vw, 4rem); font-weight: 700; letter-spacing: -0.02em; }
+.pstep__desc { font-size: 0.95rem; line-height: 1.6; color: var(--muted); max-width: 34ch; }
+@media (max-width: 1023px) {
+  .pstep { grid-template-columns: 4rem 1fr; }
+  .pstep__desc { grid-column: 2; }
+}
 
-    document.querySelectorAll("[data-tilt], .work-item").forEach((el) => {
-      el.addEventListener("mouseenter", () => { cursorRoot.classList.add("is-view"); label.textContent = "VIEW"; });
-      el.addEventListener("mouseleave", () => cursorRoot.classList.remove("is-view"));
-    });
+/* =====================================================
+   MARQUEE
+   ===================================================== */
+.marquee { overflow: hidden; padding: 8vh 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.marquee__track {
+  display: flex; gap: 6vw; width: max-content; will-change: transform;
+  animation: marquee 22s linear infinite;
+}
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__track span {
+  font-size: clamp(1.6rem, 4vw, 3.4rem); font-weight: 700; letter-spacing: -0.02em;
+  color: transparent; -webkit-text-stroke: 1px rgba(242, 242, 238, 0.4);
+  white-space: nowrap; transition: color 0.4s;
+}
+.marquee__track span:hover { color: var(--accent); -webkit-text-stroke-color: var(--accent); }
+@keyframes marquee { to { transform: translateX(-50%); } }
 
-    document.querySelectorAll(".video-frame").forEach((el) => {
-      el.addEventListener("mouseenter", () => { cursorRoot.classList.add("is-view"); label.textContent = "PLAY"; });
-      el.addEventListener("mouseleave", () => cursorRoot.classList.remove("is-view"));
-    });
+/* =====================================================
+   CONTACT
+   ===================================================== */
+.contact {
+  min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 16vh 5vw 8vh; text-align: center;
+}
+.contact__title { line-height: 0.98; letter-spacing: -0.03em; text-transform: uppercase; font-weight: 700; }
+.contact__mask { display: block; overflow: hidden; }
+.contact__line { display: block; font-size: clamp(2.6rem, 10vw, 10rem); will-change: transform; }
+.contact__line--accent { color: var(--accent); }
+.contact__cta { margin: 7vh 0 9vh; }
+.contact__links {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 2.2rem 3rem;
+}
+.contact__links a {
+  font-size: 0.75rem; letter-spacing: 0.3em; color: var(--muted);
+  position: relative; transition: color 0.3s;
+}
+.contact__links a::after {
+  content: ''; position: absolute; left: 0; bottom: -6px; width: 100%; height: 1px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.45s var(--ease-out);
+}
+.contact__links a:hover { color: var(--text); }
+.contact__links a:hover::after { transform: scaleX(1); }
 
-    document.querySelectorAll("a, button, .service-row").forEach((el) => {
-      el.addEventListener("mouseenter", () => cursorRoot.classList.add("is-link"));
-      el.addEventListener("mouseleave", () => cursorRoot.classList.remove("is-link"));
-    });
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 1rem;
+  padding: 1.3rem 3rem; border: 1px solid var(--text); border-radius: 999px;
+  font-size: 0.85rem; letter-spacing: 0.25em; font-weight: 600;
+  transition: background-color 0.4s, color 0.4s, border-color 0.4s;
+  will-change: transform;
+}
+.btn:hover { background: var(--text); color: var(--bg); }
+.btn__arrow { display: inline-block; transition: transform 0.4s var(--ease-out); }
+.btn:hover .btn__arrow { transform: translateX(8px); }
 
-    document.addEventListener("mouseleave", () => cursorRoot.classList.add("is-hidden"));
-    document.addEventListener("mouseenter", () => cursorRoot.classList.remove("is-hidden"));
-  }
+/* =====================================================
+   FOOTER
+   ===================================================== */
+.footer { padding: 6vh 5vw 4vh; border-top: 1px solid var(--line); }
+.footer__brand { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; }
+.footer__logo { font-weight: 700; letter-spacing: 0.04em; font-size: 1.2rem; }
+.footer__tag { font-size: 0.7rem; letter-spacing: 0.35em; color: var(--muted); }
+.footer__links { display: flex; gap: 2.5rem; margin: 5vh 0; flex-wrap: wrap; }
+.footer__links a { font-size: 0.75rem; letter-spacing: 0.25em; color: var(--muted); transition: color 0.3s; }
+.footer__links a:hover { color: var(--accent-bright); }
+.footer__bottom {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  font-size: 0.72rem; letter-spacing: 0.2em; color: var(--muted);
+}
+.footer__top { letter-spacing: 0.2em; font-size: 0.72rem; color: var(--muted); transition: color 0.3s; }
+.footer__top:hover { color: var(--text); }
 
-  /* ---------- 4. NAVIGATION ------------------------------------------------ */
-  function initNav() {
-    const nav = document.getElementById("siteNav");
+/* =====================================================
+   MISC / MOTION PREFS
+   ===================================================== */
+[data-reveal] { opacity: 0; transform: translateY(60px); will-change: transform, opacity; }
 
-    ScrollTrigger.create({
-      start: 60,
-      end: 99999,
-      onUpdate: (self) => nav.classList.toggle("is-scrolled", self.scroll() > 60),
-    });
-
-    // intro slide-down, runs right after preloader
-    gsap.to([".nav-logo", ".nav-links a", ".nav-burger"], {
-      y: "0%",
-      duration: 0.9,
-      ease: "power4.out",
-      stagger: 0.06,
-      delay: 0.1,
-    });
-
-    // mobile menu
-    const burger = document.getElementById("navBurger");
-    const menu = document.getElementById("mobileMenu");
-    const closeBtn = document.getElementById("mobileMenuClose");
-
-    function openMenu() {
-      menu.classList.add("is-open");
-      burger.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden";
-    }
-    function closeMenu() {
-      menu.classList.remove("is-open");
-      burger.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    }
-    burger?.addEventListener("click", () => {
-      menu.classList.contains("is-open") ? closeMenu() : openMenu();
-    });
-    closeBtn?.addEventListener("click", closeMenu);
-    menu.querySelectorAll("[data-mobile-link]").forEach((l) => l.addEventListener("click", closeMenu));
-  }
-
-  /* ---------- 5. HERO ------------------------------------------------------ */
-  function initHero() {
-    // kinetic line intro
-    const lines = gsap.utils.toArray("[data-line]");
-    gsap.set(lines, { yPercent: 110, opacity: 0, filter: "blur(10px)" });
-    gsap.to(lines, {
-      yPercent: 0, opacity: 1, filter: "blur(0px)",
-      duration: 1.1, stagger: 0.12, ease: "expo.out", delay: 0.15,
-    });
-    gsap.from(["#heroEyebrow", "#heroScroll"], {
-      opacity: 0, y: 16, duration: 0.9, stagger: 0.1, delay: 0.5, ease: "power3.out",
-    });
-    gsap.from(".hero-img", {
-      opacity: 0, scale: 1.1, duration: 1.3, stagger: 0.1, delay: 0.3, ease: "expo.out",
-    });
-
-    // mouse-follow parallax on floating images
-    if (!isTouch && !reduceMotion) {
-      const imgs = gsap.utils.toArray(".hero-img");
-      window.addEventListener("mousemove", (e) => {
-        const nx = e.clientX / innerWidth - 0.5;
-        const ny = e.clientY / innerHeight - 0.5;
-        imgs.forEach((img, i) => {
-          const strength = 18 + i * 10;
-          gsap.to(img, { x: -nx * strength, y: -ny * strength, duration: 1, ease: "power2.out" });
-        });
-      });
-    }
-
-    // scroll transform: zoom / shift / rotate / fade, then hand off to next section
-    if (!reduceMotion) {
-      gsap.timeline({
-        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.6 },
-      })
-        .to(".hero-img", { scale: 1.35, xPercent: 12, rotate: 6, opacity: 0, stagger: 0.05 }, 0)
-        .to(".hero-title", { yPercent: -30, scale: 0.88, opacity: 0 }, 0)
-        .to(".hero-eyebrow, .hero-scroll", { opacity: 0 }, 0);
-    }
-  }
-
-  /* ---------- 5b. SCROLL PARALLAX (data-speed) ----------------------------
-     Any element carrying data-speed="0.2 / 0.4 / 0.6" drifts vertically at
-     that fraction of scroll distance — kept subtle, never disabled outright
-     on mobile, just toned down via a lower multiplier.                     */
-  function initParallax() {
-    if (reduceMotion) return;
-    const multiplier = isMobile ? 0.4 : 1;
-    gsap.utils.toArray("[data-speed]").forEach((el) => {
-      const speed = parseFloat(el.dataset.speed) || 0.3;
-      gsap.to(el, {
-        yPercent: speed * 22 * multiplier,
-        ease: "none",
-        scrollTrigger: {
-          trigger: el.closest("section") || el.parentElement,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.6,
-        },
-      });
-    });
-  }
-
-  /* ---------- 6. SELECTED WORK -------------------------------------------- */
-  function initSelectedWork() {
-    document.querySelectorAll(".work-item").forEach((item) => {
-      const dir = item.dataset.reveal || "bottom";
-      const media = item.querySelector(".work-media");
-      const mask = item.querySelector(".work-mask");
-      const meta = item.querySelectorAll(".work-meta > *");
-
-      const originMap = { left: "left top", right: "right top", top: "center top", bottom: "center bottom" };
-      gsap.set(mask, { transformOrigin: originMap[dir] || "center bottom" });
-      const scaleProp = dir === "left" || dir === "right" ? "scaleX" : "scaleY";
-
-      if (reduceMotion) { gsap.set(mask, { [scaleProp]: 0 }); return; }
-
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: item, start: "top 85%", once: true },
-      });
-      tl.fromTo(mask, { [scaleProp]: 1 }, { [scaleProp]: 0, duration: 1.1, ease: "expo.inOut" })
-        .fromTo(media, { scale: 1.15 }, { scale: 1, duration: 1.3, ease: "expo.out" }, 0)
-        .fromTo(meta, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.05 }, 0.3);
-
-      // subtle hover scale + shift (desktop)
-      if (!isTouch) {
-        const img = media;
-        item.addEventListener("mouseenter", () => gsap.to(img, { scale: 1.08, duration: 0.7, ease: "power3.out" }));
-        item.addEventListener("mouseleave", () => gsap.to(img, { scale: 1, duration: 0.7, ease: "power3.out" }));
-      }
-    });
-  }
-
-  /* ---------- 7. HORIZONTAL "THE WORK" ------------------------------------ */
-  function initHorizontalWork() {
-    const track = document.getElementById("theWorkTrack");
-    const pin = document.querySelector(".the-work-pin");
-    if (!track || reduceMotion || isMobile) return;
-
-    function build() {
-      const distance = track.scrollWidth - window.innerWidth + 64;
-      return gsap.to(track, {
-        x: -distance,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".the-work",
-          start: "top top",
-          end: () => "+=" + distance,
-          scrub: 0.8,
-          pin,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-    }
-    build();
-  }
-
-  /* ---------- 8. SERVICES -------------------------------------------------- */
-  function initServices() {
-    const list = document.getElementById("servicesList");
-    const preview = document.getElementById("servicePreview");
-    const rows = gsap.utils.toArray("[data-service]");
-
-    if (isTouch) return; // touch devices skip the hover preview entirely
-
-    gsap.set(preview, { xPercent: -50, yPercent: -50, scale: 0.9 });
-
-    rows.forEach((row) => {
-      row.addEventListener("mouseenter", () => {
-        list.classList.add("is-hovering");
-        preview.style.setProperty("--ph", row.style.getPropertyValue("--ph"));
-        preview.style.setProperty("--ph2", row.style.getPropertyValue("--ph2"));
-        gsap.to(preview, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" });
-        gsap.to(row.querySelector(".service-name"), { x: 14, duration: 0.4 });
-      });
-      row.addEventListener("mouseleave", () => {
-        gsap.to(row.querySelector(".service-name"), { x: 0, duration: 0.4 });
-      });
-    });
-
-    list.addEventListener("mouseleave", () => {
-      list.classList.remove("is-hovering");
-      gsap.to(preview, { opacity: 0, scale: 0.9, duration: 0.3 });
-    });
-
-    let px = innerWidth / 2, py = innerHeight / 2;
-    const previewX = gsap.quickTo(preview, "x", { duration: 0.5, ease: "power3.out" });
-    const previewY = gsap.quickTo(preview, "y", { duration: 0.5, ease: "power3.out" });
-    window.addEventListener("mousemove", (e) => {
-      px = e.clientX; py = e.clientY;
-      previewX(px); previewY(py);
-    });
-  }
-
-  /* ---------- 9. KINETIC TYPOGRAPHY ---------------------------------------- */
-  function initKinetic() {
-    const words = gsap.utils.toArray("[data-kword]");
-    if (reduceMotion) return;
-    words.forEach((word, i) => {
-      const dir = i % 2 === 0 ? -1 : 1;
-      gsap.fromTo(word,
-        { yPercent: 60, opacity: 0, rotate: dir * 6, x: dir * 30 },
-        {
-          yPercent: 0, opacity: 1, rotate: 0, x: 0,
-          duration: 1, ease: "power3.out",
-          scrollTrigger: { trigger: ".kinetic", start: "top 75%", end: "top 30%", scrub: 0.6 },
-        }
-      );
-    });
-  }
-
-  /* ---------- 10. ABOUT ----------------------------------------------------- */
-  function initAbout() {
-    gsap.utils.toArray("[data-about-line]").forEach((line, i) => {
-      gsap.fromTo(line, { yPercent: 100, opacity: 0 }, {
-        yPercent: 0, opacity: 1, duration: 0.9, ease: "expo.out",
-        scrollTrigger: { trigger: ".about", start: "top 70%" },
-        delay: i * 0.08,
-      });
-    });
-
-    // progressive line reveal tied to scroll
-    gsap.utils.toArray("[data-about-reveal]").forEach((span, i) => {
-      gsap.to(span, {
-        opacity: 1,
-        duration: 0.4,
-        scrollTrigger: {
-          trigger: span,
-          start: "top 80%",
-          end: "top 55%",
-          scrub: 0.5,
-        },
-      });
-    });
-
-    // counters
-    gsap.utils.toArray("[data-count]").forEach((el) => {
-      const end = parseInt(el.dataset.count, 10);
-      const obj = { v: 0 };
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top 85%",
-        once: true,
-        onEnter: () => {
-          gsap.to(obj, {
-            v: end, duration: 1.6, ease: "power2.out",
-            onUpdate: () => { el.textContent = Math.floor(obj.v); },
-          });
-        },
-      });
-    });
-  }
-
-  /* ---------- 11. VIDEO ------------------------------------------------------ */
-  function initVideo() {
-    gsap.to(".video-frame", {
-      scale: 1, opacity: 1, duration: 1,
-      scrollTrigger: { trigger: ".video-frame", start: "top 80%" },
-    });
-
-    const frame = document.getElementById("videoFrame");
-    const play = document.getElementById("videoPlay");
-    if (!isTouch) {
-      frame?.addEventListener("mouseenter", () => gsap.to(frame, { scale: 1.02, duration: 0.6, ease: "power3.out" }));
-      frame?.addEventListener("mouseleave", () => gsap.to(frame, { scale: 1, duration: 0.6, ease: "power3.out" }));
-    }
-    play?.addEventListener("click", () => {
-      // placeholder: hook this up to a real <video> element / modal player
-      play.classList.toggle("is-playing");
-    });
-  }
-
-  /* ---------- 12. PROCESS ---------------------------------------------------- */
-  function initProcess() {
-    const steps = gsap.utils.toArray(".process-step");
-    steps.forEach((step, i) => {
-      gsap.fromTo(step, { opacity: 0, y: 24 }, {
-        opacity: 0.3, y: 0, duration: 0.6, ease: "power3.out",
-        scrollTrigger: { trigger: step, start: "top 90%" },
-      });
-      ScrollTrigger.create({
-        trigger: step,
-        start: "top 60%",
-        end: "bottom 40%",
-        onToggle: (self) => step.classList.toggle("is-active", self.isActive),
-      });
-    });
-  }
-
-  /* ---------- 13. MARQUEE ----------------------------------------------------- */
-  function initMarquee() {
-    const track = document.getElementById("marqueeTrack");
-    const wrap = document.getElementById("marquee");
-    if (reduceMotion) return;
-
-    const tween = gsap.to(track, {
-      xPercent: -50, duration: 22, ease: "none", repeat: -1,
-    });
-
-    wrap.addEventListener("mouseenter", () => gsap.to(tween, { timeScale: 0.25, duration: 0.4 }));
-    wrap.addEventListener("mouseleave", () => gsap.to(tween, { timeScale: 1, duration: 0.4 }));
-  }
-
-  /* ---------- 14. MAGNETIC BUTTONS -------------------------------------------- */
-  function initMagnetic() {
-    if (isTouch || reduceMotion) return;
-    document.querySelectorAll("[data-magnetic]").forEach((btn) => {
-      const xTo = gsap.quickTo(btn, "x", { duration: 0.5, ease: "power3.out" });
-      const yTo = gsap.quickTo(btn, "y", { duration: 0.5, ease: "power3.out" });
-
-      btn.addEventListener("mousemove", (e) => {
-        const rect = btn.getBoundingClientRect();
-        const relX = e.clientX - rect.left - rect.width / 2;
-        const relY = e.clientY - rect.top - rect.height / 2;
-        xTo(relX * 0.35);
-        yTo(relY * 0.5);
-      });
-      btn.addEventListener("mouseleave", () => { xTo(0); yTo(0); });
-    });
-  }
-
-  /* ---------- 15. CONTACT MASK REVEAL ------------------------------------------ */
-  function initContact() {
-    gsap.utils.toArray("#contact .reveal-mask > span").forEach((span, i) => {
-      gsap.to(span, {
-        y: "0%", duration: 1, ease: "expo.out", delay: i * 0.1,
-        scrollTrigger: { trigger: "#contact", start: "top 70%" },
-      });
-    });
-  }
-
-  /* generic reveal-masks used elsewhere (section titles) */
-  function initGenericMasks() {
-    gsap.utils.toArray(".reveal-mask:not(#contact .reveal-mask) > span").forEach((span) => {
-      gsap.to(span, {
-        y: "0%", duration: 1, ease: "expo.out",
-        scrollTrigger: { trigger: span, start: "top 85%" },
-      });
-    });
-  }
-
-  /* ---------- 16. PAGE / SECTION TRANSITIONS ----------------------------------- */
-  function initPageTransitions() {
-    const overlay = document.getElementById("pageTransition");
-    const label = overlay.querySelector("span");
-
-    document.querySelectorAll("[data-nav-link]").forEach((link) => {
-      link.addEventListener("click", (e) => {
-        const href = link.getAttribute("href");
-        if (!href || !href.startsWith("#")) return;
-        const target = document.querySelector(href);
-        if (!target) return;
-        e.preventDefault();
-
-        if (reduceMotion) { scrollTo(target); return; }
-
-        document.getElementById("mobileMenu")?.classList.remove("is-open");
-        document.body.style.overflow = "";
-
-        gsap.timeline()
-          .set(overlay, { clipPath: "polygon(0 0,100% 0,100% 0,0 0)" })
-          .to(overlay, { clipPath: "polygon(0 0,100% 0,100% 100%,0 100%)", duration: 0.45, ease: "power4.inOut" })
-          .to(label, { opacity: 1, duration: 0.2 }, "-=0.15")
-          .call(() => scrollTo(target, { duration: 0.1 }))
-          .to(label, { opacity: 0, duration: 0.2 }, "+=0.15")
-          .to(overlay, {
-            clipPath: "polygon(0 100%,100% 100%,100% 100%,0 100%)",
-            duration: 0.45, ease: "power4.inOut",
-          });
-      });
-    });
-  }
-
-  /* ---------- 17. BACK TO TOP -------------------------------------------------- */
-  function initBackToTop() {
-    document.getElementById("backToTop")?.addEventListener("click", () => scrollTo(0));
-  }
-
-  /* ---------- INIT --------------------------------------------------------- */
-  async function init() {
-    initSmoothScroll();
-    initCursor();
-    initNav();
-    initHero();
-    initParallax();
-    initSelectedWork();
-    initHorizontalWork();
-    initServices();
-    initKinetic();
-    initAbout();
-    initVideo();
-    initProcess();
-    initMarquee();
-    initMagnetic();
-    initContact();
-    initGenericMasks();
-    initPageTransitions();
-    initBackToTop();
-    ScrollTrigger.refresh();
-  }
-
-  document.addEventListener("DOMContentLoaded", async () => {
-    await runPreloader();
-    init();
-  });
-
-  window.addEventListener("resize", () => ScrollTrigger.refresh());
-})();
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  [data-reveal], .project__mask img { opacity: 1 !important; transform: none !important; }
+}
