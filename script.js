@@ -343,7 +343,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-
 /* =====================================================
    12. PRELOADER LETTER ANIMATION
 ===================================================== */
@@ -420,6 +419,82 @@ gsap.to(
         ease: "power3.out"
     }
 );
+   
+    /* =====================================================
+       12. PAGE LOADER
+    ====================================================== */
+
+    const pageLoader = document.querySelector(
+        ".page-loader"
+    );
+
+    const loaderProgress = document.querySelector(
+        ".loader-progress span"
+    );
+
+    const loaderPercentage = document.querySelector(
+        ".loader-percentage"
+    );
+
+
+    const loadingNumber = {
+        value: 0
+    };
+
+
+    gsap.to(
+        loadingNumber,
+        {
+            value: 100,
+
+            duration: 1.7,
+
+            ease: "power2.inOut",
+
+            onUpdate: function () {
+
+                const number = Math.round(
+                    loadingNumber.value
+                );
+
+                loaderPercentage.textContent =
+                    String(number).padStart(2, "0") + "%";
+
+            }
+        }
+    );
+
+
+    gsap.to(
+        loaderProgress,
+        {
+            width: "100%",
+
+            duration: 1.7,
+
+            ease: "power2.inOut"
+        }
+    );
+
+
+    gsap.to(
+        pageLoader,
+        {
+            yPercent: -100,
+
+            delay: 1.9,
+
+            duration: 0.9,
+
+            ease: "power4.inOut",
+
+            onComplete: function () {
+
+                pageLoader.remove();
+
+            }
+        }
+    );
 
 
     /* =====================================================
