@@ -44,7 +44,7 @@ button {
 ========================================================= */
 
 .blue-text {
-    color: #2f7dff;
+    color: #00f0ff;
 }
 
 .section-label {
@@ -345,7 +345,7 @@ button {
 }
 
 .hero-title em {
-    color: #2f7dff;
+    color: #00f0ff;
 
     font-family: "Playfair Display", serif;
     font-weight: 500;
