@@ -142,7 +142,7 @@ button {
     width: 0;
     height: 100%;
 
-    background: #2f7dff;
+    background: #00f0ff;
 }
 
 .loader-percentage {
@@ -452,7 +452,7 @@ button {
 }
 
 .intro-content h2 em {
-    color: #2f7dff;
+    color: #00f0ff;
 
     font-family: "Playfair Display", serif;
     font-weight: 500;
@@ -498,7 +498,7 @@ button {
 }
 
 .showcase-header h2 span {
-    color: #2f7dff;
+    color: #00f0ff;
 }
 
 .showcase-header p {
@@ -760,7 +760,7 @@ button {
 }
 
 .featured-content h2 em {
-    color: #2f7dff;
+    color: #00f0ff;
 
     font-family: "Playfair Display", serif;
     font-weight: 500;
@@ -810,7 +810,7 @@ button {
 }
 
 .services-layout > h2 span {
-    color: #2f7dff;
+    color: #00f0ff;
 }
 
 .services-list {
@@ -855,7 +855,7 @@ button {
 }
 
 .services-list a:hover strong {
-    color: #2f7dff;
+    color: #00f0ff;
 }
 
 
@@ -934,7 +934,7 @@ button {
 }
 
 .review-stars {
-    color: #2f7dff;
+    color: #00f0ff;
 
     font-size: 12px;
 
@@ -1011,7 +1011,7 @@ button {
 }
 
 .about-layout > h2 span {
-    color: #2f7dff;
+    color: #00f0ff;
 }
 
 .about-large-text {
@@ -1111,7 +1111,7 @@ button {
 }
 
 .contact-section h2 span {
-    color: #2f7dff;
+    color: #00f0ff;
 }
 
 .contact-button {
@@ -1256,7 +1256,7 @@ button {
     }
 
     .mobile-navigation small {
-        color: #2f7dff;
+        color: #00f0ff;
 
         font-size: 10px;
     }
