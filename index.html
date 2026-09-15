@@ -71,7 +71,7 @@
   <!-- ================= HERO ================= -->
   <section class="hero" id="hero">
     <div class="hero__media">
-      <div class="hero__img hero__img--1" data-speed="0.25"><img src="images/Head.png" alt="Creative work sample" loading="eager" /></div>
+      <div class="hero__img hero__img--1" data-speed="0.25"><img src="https://picsum.photos/seed/shero1/700/900" alt="Creative work sample" loading="eager" /></div>
       <div class="hero__img hero__img--2" data-speed="0.45"><img src="https://picsum.photos/seed/shero2/600/800" alt="Creative work sample" loading="eager" /></div>
       <div class="hero__img hero__img--3" data-speed="0.35"><img src="https://picsum.photos/seed/shero3/650/850" alt="Creative work sample" loading="eager" /></div>
     </div>
@@ -149,39 +149,72 @@
     </article>
   </section>
 
-  <!-- ================= HORIZONTAL WORK ================= -->
-  <section class="hscroll" id="hscroll">
-    <div class="hscroll__pin">
-      <div class="hscroll__head">
-        <h2 class="section-title">THE <em>WORK</em></h2>
-        <span class="hscroll__hint">SCROLL →</span>
+  <!-- ================= THE WORK — BENTO SLIDER ================= -->
+  <section class="workgrid" id="workgrid">
+    <div class="workgrid__head">
+      <h2 class="section-title" data-reveal>THE <em>WORK</em></h2>
+      <span class="workgrid__hint">DRAG-FREE &mdash; KEEPS FLOWING</span>
+    </div>
+
+    <!-- ROW 1 — moves left to right -->
+    <div class="workrow workrow--ltr" id="workRow1">
+      <div class="workrow__track">
+        <a href="#work" class="wcard wcard--tall js-view">
+          <img src="https://picsum.photos/seed/w1/640/860" alt="NOVA brand identity" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">01</span><h3>NOVA</h3><p>BRAND IDENTITY</p></div>
+        </a>
+        <a href="#work" class="wcard wcard--wide js-view">
+          <img src="https://picsum.photos/seed/w2/900/620" alt="AURORA digital campaign" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">02</span><h3>AURORA</h3><p>DIGITAL CAMPAIGN</p></div>
+        </a>
+        <a href="#work" class="wcard wcard--sq js-view">
+          <img src="https://picsum.photos/seed/w3/680/680" alt="PULSE motion graphics" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">03</span><h3>PULSE</h3><p>MOTION GRAPHICS</p></div>
+        </a>
+        <a href="#work" class="wcard wcard--tall js-view">
+          <img src="https://picsum.photos/seed/w4/640/860" alt="ORBIT social media" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">04</span><h3>ORBIT</h3><p>SOCIAL MEDIA</p></div>
+        </a>
+        <a href="#work" class="wcard wcard--wide js-view">
+          <img src="https://picsum.photos/seed/w5/900/620" alt="HALO AI creative" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">05</span><h3>HALO</h3><p>AI CREATIVE</p></div>
+        </a>
       </div>
-      <div class="hscroll__track">
-        <article class="hpanel">
-          <span class="hpanel__num">PROJECT 01</span>
-          <div class="hpanel__media"><img src="https://picsum.photos/seed/h1/1400/850" alt="Project 01" loading="lazy" /></div>
-          <div class="hpanel__meta"><h3>NOVA</h3><p>BRAND IDENTITY</p></div>
-        </article>
-        <article class="hpanel">
-          <span class="hpanel__num">PROJECT 02</span>
-          <div class="hpanel__media"><img src="https://picsum.photos/seed/h2/1400/850" alt="Project 02" loading="lazy" /></div>
-          <div class="hpanel__meta"><h3>AURORA</h3><p>DIGITAL CAMPAIGN</p></div>
-        </article>
-        <article class="hpanel">
-          <span class="hpanel__num">PROJECT 03</span>
-          <div class="hpanel__media"><img src="https://picsum.photos/seed/h3/1400/850" alt="Project 03" loading="lazy" /></div>
-          <div class="hpanel__meta"><h3>PULSE</h3><p>MOTION GRAPHICS</p></div>
-        </article>
-        <article class="hpanel">
-          <span class="hpanel__num">PROJECT 04</span>
-          <div class="hpanel__media"><img src="https://picsum.photos/seed/h4/1400/850" alt="Project 04" loading="lazy" /></div>
-          <div class="hpanel__meta"><h3>ORBIT</h3><p>SOCIAL MEDIA</p></div>
-        </article>
-        <article class="hpanel">
-          <span class="hpanel__num">PROJECT 05</span>
-          <div class="hpanel__media"><img src="https://picsum.photos/seed/h5/1400/850" alt="Project 05" loading="lazy" /></div>
-          <div class="hpanel__meta"><h3>HALO</h3><p>AI CREATIVE</p></div>
-        </article>
+    </div>
+
+    <!-- ROW 2 — moves right to left -->
+    <div class="workrow workrow--rtl" id="workRow2">
+      <div class="workrow__track">
+        <a href="#work" class="wcard wcard--wide js-view">
+          <img src="https://picsum.photos/seed/w6/900/620" alt="FLUX content creation" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">06</span><h3>FLUX</h3><p>CONTENT CREATION</p></div>
+        </a>
+        <a href="#work" class="wcard wcard--tall js-view">
+          <img src="https://picsum.photos/seed/w7/640/860" alt="ECHO video editing" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">07</span><h3>ECHO</h3><p>VIDEO EDITING</p></div>
+        </a>
+        <a href="#work" class="wcard wcard--sq js-view">
+          <img src="https://picsum.photos/seed/w8/680/680" alt="PRISM graphic design" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">08</span><h3>PRISM</h3><p>GRAPHIC DESIGN</p></div>
+        </a>
+        <a href="#work" class="wcard wcard--wide js-view">
+          <img src="https://picsum.photos/seed/w9/900/620" alt="VANTA branding" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">09</span><h3>VANTA</h3><p>BRANDING</p></div>
+        </a>
+        <a href="#work" class="wcard wcard--tall js-view">
+          <img src="https://picsum.photos/seed/w10/640/860" alt="SOL social campaign" loading="lazy" />
+          <div class="wcard__overlay"></div>
+          <div class="wcard__info"><span class="wcard__num">10</span><h3>SOL</h3><p>SOCIAL CAMPAIGN</p></div>
+        </a>
       </div>
     </div>
   </section>
