@@ -1,248 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shero Vision — Creative agency for graphic design, video editing, content creation, branding and digital experiences.">
-  <meta name="theme-color" content="#080808">
-  <title>Shero Vision — Creative Agency</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Shero Vision — Creative Agency</title>
+<meta name="description" content="Shero Vision is a creative agency turning ideas into powerful visual experiences — branding, motion, content and AI-driven creative work." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="cursor"><span>VIEW</span></div>
 
-  <div class="loader" aria-hidden="true">
-    <div class="loader-brand">SHERO VISION</div>
-    <div class="loader-bottom"><span>CREATIVE AGENCY</span><span id="loaderCount">00</span>%</div>
-    <div class="loader-line"></div>
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span id="cursorLabel"></span></div>
+</div>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader">
+  <div class="preloader-panel preloader-panel--l" id="preloaderPanelL"></div>
+  <div class="preloader-panel preloader-panel--r" id="preloaderPanelR"></div>
+  <div class="preloader-inner" id="preloaderInner">
+    <div class="preloader-word" id="preloaderWord">S</div>
+    <div class="preloader-sub" id="preloaderSub">CREATIVE AGENCY</div>
   </div>
+  <div class="preloader-count" id="preloaderCount">00%</div>
+  <div class="preloader-line"></div>
+</div>
 
-  <header class="nav">
-    <a class="logo magnetic" href="#top">SHERO<br><span>VISION</span></a>
-    <nav class="desktop-nav">
-      <a href="#work">WORK</a>
-      <a href="#services">SERVICES</a>
-      <a href="#about">ABOUT</a>
-      <a href="#contact">CONTACT</a>
+<!-- ============ PAGE TRANSITION OVERLAY ============ -->
+<div class="page-transition" id="pageTransition">
+  <span>SHERO VISION</span>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo" data-nav-link>SHERO VISION</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work" data-nav-link><span>WORK</span></a>
+      <a href="#services" data-nav-link><span>SERVICES</span></a>
+      <a href="#about" data-nav-link><span>ABOUT</span></a>
+      <a href="#contact" data-nav-link><span>CONTACT</span></a>
     </nav>
-    <button class="menu-btn magnetic" aria-label="Open menu"><span></span><span></span></button>
-  </header>
-
-  <div class="mobile-menu">
-    <div class="mobile-menu-inner">
-      <div class="menu-label">NAVIGATION / 2026</div>
-      <a href="#work">WORK <sup>01</sup></a>
-      <a href="#services">SERVICES <sup>02</sup></a>
-      <a href="#about">ABOUT <sup>03</sup></a>
-      <a href="#contact">CONTACT <sup>04</sup></a>
-      <div class="menu-footer">SRI LANKA / CREATIVE AGENCY</div>
-    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
   </div>
+</header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-orb orb-a"></div>
-      <div class="hero-orb orb-b"></div>
-      <div class="hero-grid"></div>
+<!-- ============ MOBILE MENU ============ -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">CLOSE</button>
+  <nav class="mobile-menu-links" aria-label="Mobile">
+    <a href="#work" data-nav-link data-mobile-link><span>WORK</span></a>
+    <a href="#services" data-nav-link data-mobile-link><span>SERVICES</span></a>
+    <a href="#about" data-nav-link data-mobile-link><span>ABOUT</span></a>
+    <a href="#contact" data-nav-link data-mobile-link><span>CONTACT</span></a>
+  </nav>
+  <div class="mobile-menu-footer">
+    <span>INSTAGRAM</span>
+    <span>BEHANCE</span>
+    <span>TIKTOK</span>
+  </div>
+</div>
 
-      <div class="hero-copy">
-        <p class="eyebrow hero-reveal">CREATIVE AGENCY / SRI LANKA</p>
-        <h1>
-          <span class="line"><span>WE CREATE</span></span>
-          <span class="line"><span>VISUAL</span></span>
-          <span class="line"><span>EXPERIENCES<span class="blue">.</span></span></span>
-        </h1>
-        <div class="hero-meta">
-          <p>Graphic design, video, content &amp; digital creativity for brands that want to be remembered.</p>
-          <a class="circle-link magnetic" href="#work"><span>EXPLORE<br>WORK ↓</span></a>
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg">
+      <div class="hero-img hero-img--a" data-speed="0.5">
+        <div class="hero-img-surface" style="--ph:245 90% 58%;--ph2:230 90% 20%"></div>
+      </div>
+      <div class="hero-img hero-img--b" data-speed="0.3">
+        <div class="hero-img-surface" style="--ph:20 80% 55%;--ph2:340 60% 20%"></div>
+      </div>
+      <div class="hero-img hero-img--c" data-speed="0.7">
+        <div class="hero-img-surface" style="--ph:160 60% 45%;--ph2:200 60% 15%"></div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow" id="heroEyebrow">CREATIVE AGENCY / SRI LANKA</p>
+      <h1 class="hero-title" id="heroTitle">
+        <span class="hero-line"><span class="hero-line-inner" data-line>WE CREATE</span></span>
+        <span class="hero-line"><span class="hero-line-inner" data-line>VISUAL EXPERIENCES</span></span>
+        <span class="hero-line"><span class="hero-line-inner hero-line--accent" data-line>THAT GET NOTICED.</span></span>
+      </h1>
+      <a href="#work" class="hero-scroll" id="heroScroll" data-nav-link>
+        <span>SCROLL TO EXPLORE</span>
+        <span class="hero-scroll-arrow">↓</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ SELECTED WORK ============ -->
+  <section class="selected-work" id="work">
+    <div class="section-head">
+      <h2 class="section-title reveal-mask"><span>SELECTED WORK</span></h2>
+      <p class="section-note">A cross-section of brand, motion and content work built to move an audience.</p>
+    </div>
+
+    <div class="work-grid">
+
+      <article class="work-item work-item--lg" data-reveal="left">
+        <div class="work-media" data-tilt style="--ph:245 85% 55%;--ph2:250 60% 15%">
+          <div class="work-mask"></div>
+        </div>
+        <div class="work-meta">
+          <span class="work-num">01</span>
+          <h3 class="work-name">NOVA</h3>
+          <span class="work-cat">BRAND IDENTITY</span>
+          <span class="work-year">2026</span>
+        </div>
+      </article>
+
+      <article class="work-item work-item--sm" data-reveal="bottom">
+        <div class="work-media" data-tilt style="--ph:20 85% 55%;--ph2:15 60% 15%">
+          <div class="work-mask"></div>
+        </div>
+        <div class="work-meta">
+          <span class="work-num">02</span>
+          <h3 class="work-name">ORBIT</h3>
+          <span class="work-cat">MOTION GRAPHICS</span>
+          <span class="work-year">2026</span>
+        </div>
+      </article>
+
+      <article class="work-item work-item--lg" data-reveal="right">
+        <div class="work-media" data-tilt style="--ph:180 60% 45%;--ph2:190 50% 12%">
+          <div class="work-mask"></div>
+        </div>
+        <div class="work-meta">
+          <span class="work-num">03</span>
+          <h3 class="work-name">FIELDNOTE</h3>
+          <span class="work-cat">CONTENT CAMPAIGN</span>
+          <span class="work-year">2025</span>
+        </div>
+      </article>
+
+      <article class="work-item work-item--offset" data-reveal="top">
+        <div class="work-media" data-tilt style="--ph:280 70% 55%;--ph2:270 50% 14%">
+          <div class="work-mask"></div>
+        </div>
+        <div class="work-meta">
+          <span class="work-num">04</span>
+          <h3 class="work-name">DRIFTLINE</h3>
+          <span class="work-cat">SOCIAL CREATIVE</span>
+          <span class="work-year">2025</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ THE WORK — HORIZONTAL ============ -->
+  <section class="the-work" id="theWork">
+    <div class="the-work-pin">
+      <div class="the-work-head">
+        <h2 class="the-work-title">THE WORK</h2>
+        <span class="the-work-hint">SCROLL →</span>
+      </div>
+      <div class="the-work-track" id="theWorkTrack">
+
+        <div class="hwork-item">
+          <div class="hwork-media" style="--ph:245 85% 55%;--ph2:250 55% 15%"></div>
+          <div class="hwork-info">
+            <span class="hwork-num">01</span>
+            <h3>NOVA</h3>
+            <span>BRAND IDENTITY</span>
+          </div>
+        </div>
+
+        <div class="hwork-item">
+          <div class="hwork-media" style="--ph:20 85% 55%;--ph2:15 60% 15%"></div>
+          <div class="hwork-info">
+            <span class="hwork-num">02</span>
+            <h3>ORBIT</h3>
+            <span>MOTION GRAPHICS</span>
+          </div>
+        </div>
+
+        <div class="hwork-item">
+          <div class="hwork-media" style="--ph:180 60% 45%;--ph2:190 50% 12%"></div>
+          <div class="hwork-info">
+            <span class="hwork-num">03</span>
+            <h3>FIELDNOTE</h3>
+            <span>CONTENT CAMPAIGN</span>
+          </div>
+        </div>
+
+        <div class="hwork-item">
+          <div class="hwork-media" style="--ph:280 70% 55%;--ph2:270 50% 14%"></div>
+          <div class="hwork-info">
+            <span class="hwork-num">04</span>
+            <h3>DRIFTLINE</h3>
+            <span>SOCIAL CREATIVE</span>
+          </div>
+        </div>
+
+        <div class="hwork-item">
+          <div class="hwork-media" style="--ph:210 80% 50%;--ph2:220 60% 14%"></div>
+          <div class="hwork-info">
+            <span class="hwork-num">05</span>
+            <h3>ALTITUDE</h3>
+            <span>AI CREATIVE</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services">
+    <div class="services-head">
+      <h2 class="section-title reveal-mask"><span>WHAT WE CREATE</span></h2>
+    </div>
+
+    <div class="services-list" id="servicesList">
+      <div class="service-row" data-service style="--ph:245 85% 55%;--ph2:250 55% 15%">
+        <span class="service-num">01</span>
+        <span class="service-name">GRAPHIC DESIGN</span>
+      </div>
+      <div class="service-row" data-service style="--ph:20 85% 55%;--ph2:15 60% 15%">
+        <span class="service-num">02</span>
+        <span class="service-name">BRANDING</span>
+      </div>
+      <div class="service-row" data-service style="--ph:180 60% 45%;--ph2:190 50% 12%">
+        <span class="service-num">03</span>
+        <span class="service-name">VIDEO EDITING</span>
+      </div>
+      <div class="service-row" data-service style="--ph:280 70% 55%;--ph2:270 50% 14%">
+        <span class="service-num">04</span>
+        <span class="service-name">CONTENT CREATION</span>
+      </div>
+      <div class="service-row" data-service style="--ph:210 80% 50%;--ph2:220 60% 14%">
+        <span class="service-num">05</span>
+        <span class="service-name">MOTION GRAPHICS</span>
+      </div>
+      <div class="service-row" data-service style="--ph:330 70% 55%;--ph2:320 55% 14%">
+        <span class="service-num">06</span>
+        <span class="service-name">SOCIAL MEDIA</span>
+      </div>
+      <div class="service-row" data-service style="--ph:150 60% 45%;--ph2:160 50% 12%">
+        <span class="service-num">07</span>
+        <span class="service-name">AI CREATIVE</span>
+      </div>
+      <div class="service-row" data-service style="--ph:40 80% 55%;--ph2:35 60% 14%">
+        <span class="service-num">08</span>
+        <span class="service-name">DIGITAL CAMPAIGNS</span>
+      </div>
+    </div>
+
+    <div class="service-preview" id="servicePreview" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ KINETIC TYPOGRAPHY ============ -->
+  <section class="kinetic" id="kinetic">
+    <div class="kinetic-inner">
+      <span class="kinetic-word" data-kword>IDEAS</span>
+      <span class="kinetic-word kinetic-word--accent" data-kword>BECOME</span>
+      <span class="kinetic-word" data-kword>VISUALS.</span>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-type">
+        <h2 class="about-heading">
+          <span class="about-line" data-about-line>WE ARE</span>
+          <span class="about-line about-line--accent" data-about-line>SHERO VISION.</span>
+        </h2>
+      </div>
+
+      <div class="about-copy">
+        <p class="about-text">
+          <span data-about-reveal>Shero Vision is a creative agency focused on transforming ideas</span>
+          <span data-about-reveal>into powerful visual experiences. From graphic design and branding</span>
+          <span data-about-reveal>to video editing, content creation and digital campaigns, we build</span>
+          <span data-about-reveal>creative work designed to make brands impossible to ignore.</span>
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num" data-count="50">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">PROJECTS</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-count="20">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">BRANDS</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-count="100">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">CREATIVE ASSETS</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-count="5">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">CREATIVE SERVICES</span>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="hero-image hero-image-a" data-speed="0.22">
-        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=85" alt="Creative design work">
+  <!-- ============ VIDEO ============ -->
+  <section class="video-section" id="videoSection">
+    <h2 class="video-heading reveal-mask"><span>STATIC IS ONLY THE BEGINNING.</span></h2>
+
+    <div class="video-frame" id="videoFrame" data-video style="--ph:225 70% 50%;--ph2:230 55% 14%">
+      <div class="video-overlay"></div>
+      <button class="video-play" id="videoPlay" aria-label="Play showreel">
+        <span class="video-play-ring"></span>
+        <span class="video-play-icon">▶</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="process" id="process">
+    <h2 class="section-title reveal-mask"><span>OUR PROCESS</span></h2>
+
+    <div class="process-list">
+      <div class="process-step" data-step>
+        <span class="process-num">01</span>
+        <h3 class="process-name">DISCOVER</h3>
+        <p class="process-desc">We dig into the brand, the audience and the goal before a single pixel moves.</p>
       </div>
-      <div class="hero-image hero-image-b" data-speed="0.42">
-        <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=900&q=85" alt="Abstract creative composition">
+      <div class="process-step" data-step>
+        <span class="process-num">02</span>
+        <h3 class="process-name">CREATE</h3>
+        <p class="process-desc">Concepts turn into design, motion and content — fast, bold, and on-brief.</p>
       </div>
-      <div class="scroll-note">SCROLL TO EXPLORE <span>↓</span></div>
-    </section>
-
-    <section class="intro">
-      <div class="section-tag">01 / THE STUDIO</div>
-      <p class="intro-text reveal-text">We turn ideas into <em>visual impact.</em> From a single social post to a complete brand world, Shero Vision builds creative that moves, connects and stays with people.</p>
-    </section>
-
-    <section id="work" class="work">
-      <div class="section-head">
-        <div class="section-tag">02 / SELECTED WORK</div>
-        <h2>THE<br><span>WORK</span></h2>
+      <div class="process-step" data-step>
+        <span class="process-num">03</span>
+        <h3 class="process-name">REFINE</h3>
+        <p class="process-desc">We sharpen every detail until the work feels inevitable, not just finished.</p>
       </div>
-
-      <div class="work-list">
-        <article class="project project-large">
-          <a href="#" class="project-link magnetic-area" data-cursor="VIEW">
-            <div class="project-image reveal-image">
-              <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1800&q=88" alt="Brand identity project">
-            </div>
-            <div class="project-info">
-              <span>01 / BRAND IDENTITY</span>
-              <h3>NOVA</h3>
-              <span>2026</span>
-            </div>
-          </a>
-        </article>
-
-        <article class="project project-offset">
-          <a href="#" class="project-link magnetic-area" data-cursor="VIEW">
-            <div class="project-image reveal-image">
-              <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1400&q=88" alt="Creative campaign project">
-            </div>
-            <div class="project-info">
-              <span>02 / CAMPAIGN</span>
-              <h3>URBAN</h3>
-              <span>2026</span>
-            </div>
-          </a>
-        </article>
-
-        <article class="project project-medium">
-          <a href="#" class="project-link magnetic-area" data-cursor="VIEW">
-            <div class="project-image reveal-image">
-              <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1500&q=88" alt="Digital design project">
-            </div>
-            <div class="project-info">
-              <span>03 / DIGITAL</span>
-              <h3>AXIS</h3>
-              <span>2026</span>
-            </div>
-          </a>
-        </article>
-
-        <article class="project project-small">
-          <a href="#" class="project-link magnetic-area" data-cursor="VIEW">
-            <div class="project-image reveal-image">
-              <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=88" alt="Creative studio project">
-            </div>
-            <div class="project-info">
-              <span>04 / CONTENT</span>
-              <h3>EMBER</h3>
-              <span>2026</span>
-            </div>
-          </a>
-        </article>
+      <div class="process-step" data-step>
+        <span class="process-num">04</span>
+        <h3 class="process-name">DELIVER</h3>
+        <p class="process-desc">Assets ship ready to run — across feed, screen, print and platform.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="horizontal-wrap">
-      <div class="horizontal-track">
-        <div class="horizontal-title">CREATIVE<br>THAT MOVES<span class="blue">.</span></div>
-        <div class="horizontal-card">
-          <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=85" alt="Design">
-          <span>GRAPHIC DESIGN</span>
-        </div>
-        <div class="horizontal-card">
-          <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=85" alt="Event creative">
-          <span>CAMPAIGNS</span>
-        </div>
-        <div class="horizontal-card">
-          <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=85" alt="Video editing">
-          <span>VIDEO / MOTION</span>
-        </div>
-        <div class="horizontal-end">KEEP<br>SCROLLING →</div>
+  <!-- ============ CLIENT MARQUEE ============ -->
+  <section class="marquee-section" aria-label="Clients">
+    <div class="marquee" id="marquee">
+      <div class="marquee-track" id="marqueeTrack">
+        <span class="marquee-item">BRAND ONE</span>
+        <span class="marquee-item">BRAND TWO</span>
+        <span class="marquee-item">BRAND THREE</span>
+        <span class="marquee-item">BRAND FOUR</span>
+        <span class="marquee-item">BRAND FIVE</span>
+        <span class="marquee-item">BRAND ONE</span>
+        <span class="marquee-item">BRAND TWO</span>
+        <span class="marquee-item">BRAND THREE</span>
+        <span class="marquee-item">BRAND FOUR</span>
+        <span class="marquee-item">BRAND FIVE</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="services" class="services">
-      <div class="section-tag">03 / WHAT WE CREATE</div>
-      <div class="services-grid">
-        <div class="services-title">
-          <h2>IDEAS<br>INTO<br><span>IMPACT.</span></h2>
-        </div>
-        <div class="service-list">
-          <a href="#" class="service" data-image="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1000&q=80"><span>01</span><strong>GRAPHIC DESIGN</strong><i>↗</i></a>
-          <a href="#" class="service" data-image="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1000&q=80"><span>02</span><strong>BRANDING</strong><i>↗</i></a>
-          <a href="#" class="service" data-image="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1000&q=80"><span>03</span><strong>VIDEO EDITING</strong><i>↗</i></a>
-          <a href="#" class="service" data-image="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1000&q=80"><span>04</span><strong>CONTENT CREATION</strong><i>↗</i></a>
-          <a href="#" class="service" data-image="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1000&q=80"><span>05</span><strong>MOTION GRAPHICS</strong><i>↗</i></a>
-          <a href="#" class="service" data-image="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1000&q=80"><span>06</span><strong>SOCIAL MEDIA</strong><i>↗</i></a>
-          <a href="#" class="service" data-image="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80"><span>07</span><strong>AI CREATIVE</strong><i>↗</i></a>
-          <a href="#" class="service" data-image="https://images.unsplash.com/photo-1553484771-047a44eee27b?auto=format&fit=crop&w=1000&q=80"><span>08</span><strong>DIGITAL CAMPAIGNS</strong><i>↗</i></a>
-        </div>
-        <div class="service-hover-image"><img src="" alt=""></div>
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <h2 class="contact-heading">
+        <span class="reveal-mask"><span>HAVE AN IDEA?</span></span>
+        <span class="reveal-mask"><span class="contact-accent">LET'S MAKE IT REAL.</span></span>
+      </h2>
+
+      <a href="mailto:hello@shero-vision.example" class="magnetic-btn contact-cta" data-magnetic>
+        <span>START A PROJECT</span>
+        <span class="magnetic-btn-arrow">→</span>
+      </a>
+
+      <div class="contact-links">
+        <a href="mailto:hello@shero-vision.example" class="contact-link" data-magnetic>EMAIL</a>
+        <a href="https://wa.me/000000000000" class="contact-link" data-magnetic>WHATSAPP</a>
+        <a href="https://instagram.com/sherovision" class="contact-link" data-magnetic>INSTAGRAM</a>
+        <a href="https://facebook.com/sherovision" class="contact-link" data-magnetic>FACEBOOK</a>
+        <a href="https://behance.net/sherovision" class="contact-link" data-magnetic>BEHANCE</a>
+        <a href="https://tiktok.com/@sherovision" class="contact-link" data-magnetic>TIKTOK</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="statement">
-      <div class="section-tag">04 / OUR MINDSET</div>
-      <div class="statement-words">
-        <div>DESIGN</div><div>IS NOT</div><div>DECORATION<span class="blue">.</span></div>
-      </div>
-      <p>It's a way to make people stop, feel something and remember your brand.</p>
-    </section>
+</main>
 
-    <section id="about" class="about">
-      <div class="section-tag">05 / ABOUT SHERO VISION</div>
-      <div class="about-grid">
-        <h2>WE MAKE<br><span>BRANDS</span><br>MATTER.</h2>
-        <div class="about-copy">
-          <p class="big-copy">Shero Vision is a creative agency focused on transforming ideas into powerful visual experiences.</p>
-          <p>From graphic design and branding to video editing, content creation and digital campaigns, we create work designed to capture attention and build memorable brands.</p>
-          <a class="underlined magnetic" href="#contact">START A CONVERSATION ↗</a>
-        </div>
-      </div>
-      <div class="stats">
-        <div><strong data-count="50">0</strong><span>PROJECTS+</span></div>
-        <div><strong data-count="20">0</strong><span>BRANDS+</span></div>
-        <div><strong data-count="100">0</strong><span>CREATIVE ASSETS+</span></div>
-        <div><strong data-count="8">0</strong><span>SERVICES</span></div>
-      </div>
-    </section>
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-top">
+    <span class="footer-logo">SHERO VISION</span>
+    <span class="footer-tag">CREATIVE AGENCY</span>
+  </div>
+  <div class="footer-links">
+    <a href="#work" data-nav-link>WORK</a>
+    <a href="#services" data-nav-link>SERVICES</a>
+    <a href="#about" data-nav-link>ABOUT</a>
+    <a href="#contact" data-nav-link>CONTACT</a>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 SHERO VISION</span>
+    <button class="back-to-top" id="backToTop">BACK TO TOP ↑</button>
+  </div>
+</footer>
 
-    <section class="process">
-      <div class="section-tag">06 / HOW WE WORK</div>
-      <h2>FROM IDEA<br>TO <span>IMPACT.</span></h2>
-      <div class="process-list">
-        <div class="process-item"><span>01</span><h3>DISCOVER</h3><p>We understand your brand, audience and objective.</p></div>
-        <div class="process-item"><span>02</span><h3>CREATE</h3><p>We turn strategy into concepts, visuals and creative direction.</p></div>
-        <div class="process-item"><span>03</span><h3>REFINE</h3><p>We challenge, improve and polish every detail.</p></div>
-        <div class="process-item"><span>04</span><h3>DELIVER</h3><p>Production-ready creative, built to make an impact.</p></div>
-      </div>
-    </section>
-
-    <section class="marquee" aria-label="Services">
-      <div class="marquee-track">SHERO VISION&nbsp; — &nbsp;GRAPHIC DESIGN&nbsp; — &nbsp;VIDEO&nbsp; — &nbsp;CONTENT&nbsp; — &nbsp;BRANDING&nbsp; — &nbsp;MOTION&nbsp; — &nbsp;SHERO VISION&nbsp; — &nbsp;GRAPHIC DESIGN&nbsp; — &nbsp;VIDEO&nbsp; — &nbsp;CONTENT&nbsp; — &nbsp;</div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="contact-glow"></div>
-      <div class="section-tag">07 / LET'S CREATE</div>
-      <h2>HAVE AN<br><span>IDEA?</span></h2>
-      <a class="contact-link magnetic" href="mailto:hello@sherovision.com">LET'S MAKE IT REAL <span>↗</span></a>
-      <div class="contact-bottom">
-        <div>SRI LANKA<br>CREATIVE AGENCY</div>
-        <div class="socials">
-          <a href="#">INSTAGRAM</a>
-          <a href="#">FACEBOOK</a>
-          <a href="#">BEHANCE</a>
-          <a href="#">WHATSAPP</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div>SHERO VISION</div>
-    <div>© 2026 SHERO VISION</div>
-    <button id="topBtn">BACK TO TOP ↑</button>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
-  <script src="script.js"></script>
+<!-- ============ SCRIPTS ============ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
