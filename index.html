@@ -1,74 +1,834 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Shero Vision — Creative Agency">
-<title>Shero Vision — Creative Agency</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+
+    <!-- Basic page information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SheroVision — Creative Agency</title>
+
+    <meta
+        name="description"
+        content="SheroVision is a creative agency specializing in graphic design, branding, video editing, content creation, motion graphics and digital campaigns."
+    >
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;1,500&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Website stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
-<div class="noise"></div><div class="cursor"><span>VIEW</span></div>
-<div class="loader"><strong>SHERO VISION</strong><small>CREATIVE AGENCY</small><div class="loadbar"><i></i></div><b>00%</b></div>
 
-<header class="nav">
-<a class="logo" href="#home">SHERO<br><span>VISION</span></a>
-<nav><a href="#work">WORK</a><a href="#services">SERVICES</a><a href="#about">ABOUT</a><a href="#contact">CONTACT</a></nav>
-<button class="menu" aria-label="Menu"><i></i><i></i></button>
-</header>
-<div class="mobile-menu"><a href="#work">WORK</a><a href="#services">SERVICES</a><a href="#about">ABOUT</a><a href="#contact">CONTACT</a></div>
+    <!-- =====================================================
+         GRAIN / NOISE OVERLAY
+    ====================================================== -->
 
-<main id="home">
-<section class="hero">
-<div class="hero-grid"></div><div class="hero-label">CREATIVE AGENCY / SRI LANKA <span>2026</span></div>
-<div class="hero-copy">
-<h1><span><b>WE CREATE</b></span><span><b>VISUAL</b></span><span><b>EXPERIENCES<span class="blue">.</span></b></span></h1>
-<div class="hero-bottom"><p>Graphic design, branding, video editing and content creation for brands that want to get noticed.</p><a class="circle magnetic" href="#work">EXPLORE<br>WORK ↓</a></div>
-</div>
-<div class="float a"><img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1000&q=85" alt="Creative design"></div>
-<div class="float b"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=85" alt="Brand identity"></div>
-<div class="scroll">SCROLL TO EXPLORE ↓</div>
-</section>
+    <div class="noise-overlay"></div>
 
-<section class="intro section"><div class="eyebrow">01 / THE STUDIO</div><div><h2>We turn ideas into <em>visual impact.</em></h2><p>We combine design, storytelling and digital creativity to build work people remember — from brand identity and social media to video and motion.</p></div></section>
 
-<section id="work" class="work section"><div class="heading"><div class="eyebrow">02 / SELECTED WORK</div><h2>THE<br><span>WORK</span></h2></div>
-<div class="projects">
-<article><a class="project magnetic-area" href="#"><div class="pic"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1500&q=85" alt="Nova"></div><div class="meta"><span>01 / BRAND IDENTITY</span><strong>NOVA</strong><span>2026 ↗</span></div></a></article>
-<article class="offset"><a class="project magnetic-area" href="#"><div class="pic"><img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1200&q=85" alt="Wild Comfort"></div><div class="meta"><span>02 / CAMPAIGN</span><strong>WILD COMFORT</strong><span>2026 ↗</span></div></a></article>
-<article class="medium"><a class="project magnetic-area" href="#"><div class="pic"><img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1300&q=85" alt="Vantage"></div><div class="meta"><span>03 / DIGITAL</span><strong>VANTAGE</strong><span>2026 ↗</span></div></a></article>
-<article class="small"><a class="project magnetic-area" href="#"><div class="pic"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Ember"></div><div class="meta"><span>04 / CONTENT</span><strong>EMBER</strong><span>2026 ↗</span></div></a></article>
-</div></section>
+    <!-- =====================================================
+         PAGE LOADER
+    ====================================================== -->
 
-<section class="horizontal"><div class="track"><div class="h-title">THE WORK<br><span>IN MOTION.</span></div>
-<div class="h-card"><img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=85" alt=""><small>GRAPHIC DESIGN</small></div>
-<div class="h-card"><img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=85" alt=""><small>CAMPAIGNS</small></div>
-<div class="h-card"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=85" alt=""><small>VIDEO / MOTION</small></div><div class="h-end">KEEP<br>SCROLLING →</div></div></section>
+    <div class="page-loader">
 
-<section id="services" class="services section"><div class="eyebrow">03 / WHAT WE CREATE</div><div class="services-layout"><h2>IDEAS<br>INTO<br><span>IMPACT.</span></h2><div class="service-list">
-<a class="service magnetic-area" data-img="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=80"><i>01</i><strong>GRAPHIC DESIGN</strong><b>↗</b></a>
-<a class="service magnetic-area" data-img="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=80"><i>02</i><strong>BRANDING</strong><b>↗</b></a>
-<a class="service magnetic-area" data-img="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=900&q=80"><i>03</i><strong>VIDEO EDITING</strong><b>↗</b></a>
-<a class="service magnetic-area" data-img="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=80"><i>04</i><strong>CONTENT CREATION</strong><b>↗</b></a>
-<a class="service magnetic-area" data-img="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=80"><i>05</i><strong>MOTION GRAPHICS</strong><b>↗</b></a>
-<a class="service magnetic-area" data-img="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=900&q=80"><i>06</i><strong>SOCIAL MEDIA</strong><b>↗</b></a>
-<a class="service magnetic-area" data-img="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"><i>07</i><strong>AI CREATIVE</strong><b>↗</b></a>
-<a class="service magnetic-area" data-img="https://images.unsplash.com/photo-1553484771-047a44eee27b?auto=format&fit=crop&w=900&q=80"><i>08</i><strong>DIGITAL CAMPAIGNS</strong><b>↗</b></a>
-</div><div class="service-preview"><img alt=""></div></div></section>
+        <div class="loader-content">
 
-<section class="statement section"><div class="eyebrow">04 / OUR MINDSET</div><div class="words"><div>IDEAS</div><div>BECOME</div><div>VISUALS<span class="blue">.</span></div></div><p>Motion, typography, image and strategy working together.</p></section>
+            <div class="loader-logo">
+                SHEROVISION
+            </div>
 
-<section id="about" class="about section"><div class="eyebrow">05 / ABOUT SHERO VISION</div><div class="about-grid"><h2>WE ARE<br>SHERO<br><span>VISION.</span></h2><div><p class="large">A creative agency built around design, storytelling and digital culture.</p><p>From brand identities and social media content to video editing, motion graphics and digital campaigns, we create work designed to capture attention and build memorable brands.</p><a class="line-link magnetic" href="#contact">START A CONVERSATION ↗</a></div></div>
-<div class="stats"><div><strong data-count="50">0</strong><small>PROJECTS+</small></div><div><strong data-count="20">0</strong><small>BRANDS+</small></div><div><strong data-count="100">0</strong><small>CREATIVE ASSETS+</small></div><div><strong data-count="8">0</strong><small>SERVICES</small></div></div></section>
+            <div class="loader-subtitle">
+                CREATIVE AGENCY
+            </div>
 
-<section class="process section"><div class="eyebrow">06 / HOW WE WORK</div><h2>FROM IDEA<br>TO <span>IMPACT.</span></h2><div class="process-list"><div><i>01</i><strong>DISCOVER</strong><p>Understand the brand, audience and objective.</p></div><div><i>02</i><strong>CREATE</strong><p>Turn strategy into concepts and visual direction.</p></div><div><i>03</i><strong>REFINE</strong><p>Challenge, improve and polish every detail.</p></div><div><i>04</i><strong>DELIVER</strong><p>Production-ready creative built to make an impact.</p></div></div></section>
+        </div>
 
-<section class="marquee"><div>SHERO VISION — GRAPHIC DESIGN — VIDEO — CONTENT — BRANDING — MOTION — SHERO VISION — GRAPHIC DESIGN — VIDEO — CONTENT — BRANDING — MOTION — </div></section>
+        <div class="loader-progress">
+            <span></span>
+        </div>
 
-<section id="contact" class="contact"><div class="contact-inner"><div class="eyebrow">07 / LET'S CREATE</div><h2>HAVE AN<br><span>IDEA?</span></h2><a class="contact-cta magnetic" href="mailto:hello@sherovision.com">LET'S MAKE IT REAL <b>↗</b></a><div class="contact-links"><span>SRI LANKA / CREATIVE AGENCY</span><div><a href="#">INSTAGRAM</a><a href="#">FACEBOOK</a><a href="#">BEHANCE</a><a href="#">WHATSAPP</a></div></div></div></section>
-<footer><b>SHERO VISION</b><span>© 2026 SHERO VISION</span><button id="top">BACK TO TOP ↑</button></footer>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script><script src="script.js"></script>
-</body></html>
+        <div class="loader-percentage">
+            00%
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <header class="navigation">
+
+        <!-- Logo -->
+        <a href="#home" class="site-logo">
+            ✦ SHERO
+            <span>VISION</span>
+        </a>
+
+
+        <!-- Desktop navigation -->
+        <nav class="desktop-navigation">
+
+            <a href="#showcase">
+                WORK
+            </a>
+
+            <a href="#services">
+                SERVICES
+            </a>
+
+            <a href="#reviews">
+                REVIEWS
+            </a>
+
+            <a href="#about">
+                ABOUT
+            </a>
+
+            <a href="#contact" class="nav-project-button">
+                START A PROJECT ↗
+            </a>
+
+        </nav>
+
+
+        <!-- Mobile menu button -->
+        <button
+            class="mobile-menu-button"
+            aria-label="Open navigation menu"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOBILE NAVIGATION
+    ====================================================== -->
+
+    <div class="mobile-navigation">
+
+        <div class="mobile-navigation-links">
+
+            <a href="#showcase">
+                WORK
+                <small>01</small>
+            </a>
+
+            <a href="#services">
+                SERVICES
+                <small>02</small>
+            </a>
+
+            <a href="#reviews">
+                REVIEWS
+                <small>03</small>
+            </a>
+
+            <a href="#about">
+                ABOUT
+                <small>04</small>
+            </a>
+
+            <a href="#contact">
+                CONTACT
+                <small>05</small>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN WEBSITE
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO SECTION
+        ================================================== -->
+
+        <section id="home" class="hero-section">
+
+            <div class="hero-top-line">
+
+                <span>
+                    CREATIVE AGENCY / SRI LANKA
+                </span>
+
+                <span>
+                    DESIGN · MOTION · CONTENT
+                </span>
+
+            </div>
+
+
+            <div class="hero-content">
+
+                <div class="small-label">
+                    SHERO VISION / 2026
+                </div>
+
+
+                <h1 class="hero-title">
+
+                    <span>
+                        WE MAKE
+                    </span>
+
+                    <span>
+                        <em>VISUAL</em>
+                    </span>
+
+                    <span>
+                        NOISE<span class="blue-text">.</span>
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Graphic design, branding, video editing,
+                    content creation and AI-powered creative
+                    work for brands that want to be remembered.
+
+                </p>
+
+
+                <a href="#showcase" class="hero-button">
+
+                    EXPLORE OUR WORK
+
+                    <span>
+                        ↓
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- Decorative orb -->
+            <div class="hero-orb"></div>
+
+
+            <div class="hero-scroll-indicator">
+
+                SCROLL TO EXPLORE
+
+                <span>
+                    ↓
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             INTRODUCTION
+        ================================================== -->
+
+        <section class="intro-section content-section">
+
+            <div class="section-label">
+                01 / THE STUDIO
+            </div>
+
+
+            <div class="intro-content">
+
+                <h2>
+                    We turn ideas into
+                    <em>visual impact.</em>
+                </h2>
+
+
+                <p>
+
+                    SheroVision is a creative agency focused on
+                    transforming ideas into powerful visual
+                    experiences.
+
+                    We combine design, storytelling, motion and
+                    digital creativity to build work people
+                    remember.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PORTFOLIO SHOWCASE
+        ================================================== -->
+
+        <section id="showcase" class="showcase-section">
+
+            <div class="showcase-header">
+
+                <div>
+
+                    <div class="section-label">
+                        02 / SELECTED WORK
+                    </div>
+
+                    <h2>
+                        OUR<br>
+                        <span>VISUALS.</span>
+                    </h2>
+
+                </div>
+
+
+                <p>
+
+                    A constantly moving collection of
+                    selected SheroVision projects.
+
+                    Replace the sample images in
+                    <strong>script.js</strong>
+                    with your own work.
+
+                </p>
+
+            </div>
+
+
+            <!--
+                The two rows are filled by JavaScript.
+
+                TOP ROW:
+                Moves from LEFT to RIGHT.
+
+                BOTTOM ROW:
+                Moves from RIGHT to LEFT.
+            -->
+
+            <div class="showcase-window">
+
+
+                <!-- TOP MOVING ROW -->
+
+                <div class="showcase-row top-row">
+
+                    <div
+                        id="top-project-row"
+                        class="project-row"
+                    ></div>
+
+                </div>
+
+
+                <!-- BOTTOM MOVING ROW -->
+
+                <div class="showcase-row bottom-row">
+
+                    <div
+                        id="bottom-project-row"
+                        class="project-row"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="showcase-footer">
+
+                <span>
+                    TOP ROW / →
+                </span>
+
+                <span>
+                    HOVER TO EXPLORE
+                </span>
+
+                <span>
+                    ← / BOTTOM ROW
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FEATURED PROJECT
+        ================================================== -->
+
+        <section class="featured-section content-section">
+
+            <div class="section-label">
+                03 / FEATURED PROJECT
+            </div>
+
+
+            <div class="featured-layout">
+
+
+                <div class="featured-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1800&q=90"
+                        alt="Featured SheroVision design project"
+                    >
+
+                </div>
+
+
+                <div class="featured-content">
+
+                    <small>
+                        CASE STUDY / 2026
+                    </small>
+
+                    <h2>
+                        Ideas that
+                        <em>move.</em>
+                    </h2>
+
+                    <p>
+
+                        We build visual systems that can live
+                        across campaigns, social platforms,
+                        digital experiences and video.
+
+                    </p>
+
+                    <a href="#contact">
+                        VIEW PROJECT ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SERVICES
+        ================================================== -->
+
+        <section id="services" class="services-section content-section">
+
+            <div class="section-label">
+                04 / SERVICES
+            </div>
+
+
+            <div class="services-layout">
+
+
+                <h2>
+                    WHAT<br>
+                    WE<br>
+                    <span>CREATE.</span>
+                </h2>
+
+
+                <div class="services-list">
+
+
+                    <a href="#contact">
+
+                        <i>01</i>
+
+                        <strong>
+                            GRAPHIC DESIGN
+                        </strong>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="#contact">
+
+                        <i>02</i>
+
+                        <strong>
+                            BRANDING
+                        </strong>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="#contact">
+
+                        <i>03</i>
+
+                        <strong>
+                            VIDEO EDITING
+                        </strong>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="#contact">
+
+                        <i>04</i>
+
+                        <strong>
+                            CONTENT CREATION
+                        </strong>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="#contact">
+
+                        <i>05</i>
+
+                        <strong>
+                            MOTION GRAPHICS
+                        </strong>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="#contact">
+
+                        <i>06</i>
+
+                        <strong>
+                            SOCIAL MEDIA
+                        </strong>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="#contact">
+
+                        <i>07</i>
+
+                        <strong>
+                            AI CREATIVE
+                        </strong>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="#contact">
+
+                        <i>08</i>
+
+                        <strong>
+                            DIGITAL CAMPAIGNS
+                        </strong>
+
+                        <b>↗</b>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CLIENT REVIEWS
+        ================================================== -->
+
+        <section id="reviews" class="reviews-section content-section">
+
+
+            <div class="reviews-header">
+
+                <div>
+
+                    <div class="section-label">
+                        05 / RECENT CLIENT REVIEWS
+                    </div>
+
+                    <h2>
+                        TRUSTED<br>
+                        <em>BY BRANDS.</em>
+                    </h2>
+
+                </div>
+
+
+                <p>
+
+                    Real feedback from your recent clients
+                    can be placed here.
+
+                    The sample reviews below are easy to
+                    replace in <strong>script.js</strong>.
+
+                </p>
+
+            </div>
+
+
+            <!-- Review slider -->
+
+            <div class="reviews-window">
+
+                <div
+                    id="reviews-track"
+                    class="reviews-track"
+                ></div>
+
+            </div>
+
+
+            <!-- Slider controls -->
+
+            <div class="review-controls">
+
+                <button id="review-previous">
+                    ←
+                </button>
+
+                <span id="review-counter">
+                    01 / 05
+                </span>
+
+                <button id="review-next">
+                    →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ABOUT
+        ================================================== -->
+
+        <section id="about" class="about-section content-section">
+
+            <div class="section-label">
+                06 / ABOUT SHERO VISION
+            </div>
+
+
+            <div class="about-layout">
+
+
+                <h2>
+
+                    CREATIVE<br>
+                    THINKING.<br>
+
+                    <span>
+                        VISUAL<br>
+                        IMPACT.
+                    </span>
+
+                </h2>
+
+
+                <div class="about-content">
+
+                    <p class="about-large-text">
+
+                        We are a creative agency turning ideas
+                        into bold, useful and memorable visual
+                        experiences.
+
+                    </p>
+
+
+                    <p>
+
+                        Our work brings strategy, design,
+                        storytelling, editing, motion and
+                        AI-assisted creativity together.
+
+                        We create for brands, businesses,
+                        artists, events and ambitious ideas.
+
+                    </p>
+
+
+                    <!-- Statistics -->
+
+                    <div class="statistics">
+
+
+                        <div>
+
+                            <strong data-count="50">
+                                0
+                            </strong>
+
+                            <small>
+                                PROJECTS+
+                            </small>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong data-count="20">
+                                0
+                            </strong>
+
+                            <small>
+                                BRANDS+
+                            </small>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong data-count="100">
+                                0
+                            </strong>
+
+                            <small>
+                                ASSETS+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FINAL CALL TO ACTION
+        ================================================== -->
+
+        <section id="contact" class="contact-section">
+
+            <div class="contact-inner">
+
+                <div class="section-label">
+                    07 / LET'S WORK TOGETHER
+                </div>
+
+
+                <h2>
+
+                    HAVE A<br>
+
+                    <span>
+                        PROJECT?
+                    </span>
+
+                </h2>
+
+
+                <a
+                    href="mailto:hello@sherovision.com"
+                    class="contact-button"
+                >
+
+                    LET'S MAKE IT REAL
+
+                    <span>
+                        ↗
+                    </span>
+
+                </a>
+
+
+                <div class="contact-footer">
+
+                    <span>
+                        SRI LANKA / CREATIVE AGENCY
+                    </span>
+
+                    <span>
+                        hello@sherovision.com
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <strong>
+            SHERO VISION
+        </strong>
+
+        <span>
+            © 2026 SHERO VISION
+        </span>
+
+        <button id="back-to-top">
+            BACK TO TOP ↑
+        </button>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT LIBRARIES
+    ====================================================== -->
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+
+    <!-- GSAP ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis smooth scrolling -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+
+
+    <!-- Our JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
