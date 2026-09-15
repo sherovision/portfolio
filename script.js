@@ -344,81 +344,82 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =====================================================
-       12. PAGE LOADER
-    ====================================================== */
+/* =====================================================
+   12. PRELOADER LETTER ANIMATION
+===================================================== */
 
-    const pageLoader = document.querySelector(
-        ".page-loader"
-    );
-
-    const loaderProgress = document.querySelector(
-        ".loader-progress span"
-    );
-
-    const loaderPercentage = document.querySelector(
-        ".loader-percentage"
-    );
+/*
+    Get the SheroVision logo from the preloader.
+*/
+const loaderLogo = document.querySelector("#loader-logo");
 
 
-    const loadingNumber = {
-        value: 0
-    };
+/*
+    Get the text currently inside the logo.
+*/
+const loaderText = loaderLogo.textContent.trim();
 
 
-    gsap.to(
-        loadingNumber,
-        {
-            value: 100,
-
-            duration: 1.7,
-
-            ease: "power2.inOut",
-
-            onUpdate: function () {
-
-                const number = Math.round(
-                    loadingNumber.value
-                );
-
-                loaderPercentage.textContent =
-                    String(number).padStart(2, "0") + "%";
-
-            }
-        }
-    );
+/*
+    Clear the original text.
+*/
+loaderLogo.textContent = "";
 
 
-    gsap.to(
-        loaderProgress,
-        {
-            width: "100%",
+/*
+    Create one <span> for every letter.
+*/
+loaderText.split("").forEach(function (letter) {
 
-            duration: 1.7,
+    const letterElement = document.createElement("span");
 
-            ease: "power2.inOut"
-        }
-    );
+    /*
+        Add our animation class.
+    */
+    letterElement.classList.add("loader-letter");
 
 
-    gsap.to(
-        pageLoader,
-        {
-            yPercent: -100,
+    /*
+        Keep spaces working correctly.
+    */
+    if (letter === " ") {
 
-            delay: 1.9,
+        letterElement.innerHTML = "&nbsp;";
 
-            duration: 0.9,
+    } else {
 
-            ease: "power4.inOut",
+        letterElement.textContent = letter;
 
-            onComplete: function () {
+    }
 
-                pageLoader.remove();
 
-            }
-        }
-    );
+    /*
+        Put the letter inside the logo.
+    */
+    loaderLogo.appendChild(letterElement);
+
+});
+
+
+/*
+    Animate every letter one after another.
+*/
+gsap.to(
+    ".loader-letter",
+    {
+        opacity: 1,
+
+        y: 0,
+
+        filter: "blur(0px)",
+
+        duration: 0.45,
+
+        stagger: 0.08,
+
+        ease: "power3.out"
+    }
+);
 
 
     /* =====================================================
