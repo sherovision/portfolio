@@ -264,25 +264,6 @@ if (!CONFIG.reduceMotion) {
     });
   });
 
-  // Horizontal scroll portfolio (desktop)
-  if (CONFIG.isDesktop) {
-    const track = document.querySelector('.hscroll__track');
-    const getAmount = () => track.scrollWidth - window.innerWidth;
-    gsap.to(track, {
-      x: () => -getAmount(),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hscroll',
-        start: 'top top',
-        end: () => '+=' + getAmount(),
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      },
-    });
-  }
-
   // Kinetic typography — vertical shift, rotation, scale, opacity per word
   gsap.utils.toArray('[data-kinetic]').forEach((word, i) => {
     gsap.fromTo(word,
@@ -427,6 +408,74 @@ if (!CONFIG.reduceMotion) {
   });
 })();
 
+
+/* =====================================================
+   THE WORK — BENTO SLIDER
+   Two infinite rows, opposite directions. Seamless loop
+   via duplicated content; speed reacts to scroll velocity;
+   rows slow to a crawl on hover.
+   ===================================================== */
+(function workGrid() {
+  const rows = gsap.utils.toArray('.workrow');
+  if (!rows.length) return;
+
+  // Double each track's content so -50% === one full card set (seamless loop)
+  rows.forEach((row) => {
+    const track = row.querySelector('.workrow__track');
+    if (!track.dataset.doubled) {
+      track.innerHTML += track.innerHTML;
+      track.dataset.doubled = '1';
+    }
+  });
+
+  if (CONFIG.reduceMotion) return; // CSS falls back to static overflow scroll
+
+  const tweens = rows.map((row) => {
+    const track = row.querySelector('.workrow__track');
+    const ltr = row.classList.contains('workrow--ltr');
+    const half = () => track.scrollWidth / 2;
+    const duration = () => half() / 55; // ~55px per second cruise speed
+
+    const tween = gsap.fromTo(track,
+      { x: () => (ltr ? -half() : 0) },
+      {
+        x: () => (ltr ? 0 : -half()),
+        duration, ease: 'none', repeat: -1,
+        invalidateOnRefresh: true,
+      });
+    tween._hover = false;
+
+    row.addEventListener('mouseenter', () => { tween._hover = true; applySpeed(); });
+    row.addEventListener('mouseleave', () => { tween._hover = false; applySpeed(); });
+    return tween;
+  });
+
+  // Shared speed state: 1 = cruise, hover = crawl, scroll = boost
+  const speed = { v: 1 };
+  function applySpeed() {
+    tweens.forEach((t) => t.timeScale(speed.v * (t._hover ? 0.12 : 1)));
+  }
+
+  // Scroll-velocity boost — rows surge as you scroll, then settle back
+  let settleTimer = null;
+  const boost = (velocity) => {
+    const target = 1 + Math.min(Math.abs(velocity) / 60, 3.5);
+    gsap.to(speed, {
+      v: target, duration: 0.25, overwrite: true, onUpdate: applySpeed,
+      onComplete() {
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(() => {
+          gsap.to(speed, { v: 1, duration: 1.4, ease: 'power2.out', onUpdate: applySpeed });
+        }, 90);
+      },
+    });
+  };
+
+  if (lenis) lenis.on('scroll', ({ velocity }) => boost(velocity));
+  else window.addEventListener('scroll', () => boost(window.scrollY - (boost._last || 0)), { passive: true });
+
+  applySpeed();
+})();
 
 /* =====================================================
    REVIEWS — cinematic testimonial slider
