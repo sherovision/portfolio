@@ -108,8 +108,10 @@ button {
 }
 
 .loader-logo {
-    font-size: clamp(40px, 8vw, 110px);
-    font-weight: 900;
+   font-family: "Montserrat", sans-serif;
+   
+   font-size: clamp(40px, 8vw, 110px);
+    font-weight: 750;
     letter-spacing: -0.09em;
 }
 
