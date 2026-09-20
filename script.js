@@ -104,14 +104,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         [
             "Motion",
-            "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1000&q=88",
-            "FRAME"
+            "images/eminva.png",
+            "Logo Design"
         ],
 
         [
             "Social Media",
-            "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1000&q=88",
-            "SOCIAL LAB"
+            "images/rookantha.png",
+            "Event Poster"
         ],
 
         [
