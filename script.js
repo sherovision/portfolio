@@ -495,31 +495,131 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         gsap.to(
-            ".hero-orb",
-            {
-                x: -100,
+    ".hero-eye",
+    {
+        x: -100,
 
-                y: 120,
+        y: 120,
 
-                scale: 1.35,
+        scale: 1.15,
 
-                scrollTrigger: {
+        scrollTrigger: {
 
-                    trigger: ".hero-section",
+            trigger: ".hero-section",
 
-                    start: "top top",
+            start: "top top",
 
-                    end: "bottom top",
+            end: "bottom top",
 
-                    scrub: 1
+            scrub: 1
 
-                }
-            }
-        );
-
+        }
     }
+);
+       
+}
+
+/* =====================================================
+   3D HERO EYE MOVEMENT
+===================================================== */
+
+/*
+    Get all parts of the eye.
+*/
+
+const heroEye = document.querySelector(".hero-eye");
+
+const eyeBall = document.querySelector(".eye-ball");
+
+const eyeIris = document.querySelector(".eye-iris");
 
 
+/*
+    Only run the animation if the eye exists.
+*/
+
+if (
+    heroEye &&
+    eyeBall &&
+    eyeIris &&
+    !prefersReducedMotion
+) {
+
+    /*
+        Listen for mouse movement.
+    */
+
+    window.addEventListener(
+        "mousemove",
+        function (event) {
+
+            /*
+                Convert the horizontal mouse position
+                to a value between -0.5 and 0.5.
+            */
+
+            const mouseX =
+                event.clientX /
+                window.innerWidth -
+                0.5;
+
+
+            /*
+                Convert the vertical mouse position
+                to a value between -0.5 and 0.5.
+            */
+
+            const mouseY =
+                event.clientY /
+                window.innerHeight -
+                0.5;
+
+
+            /*
+                Slightly rotate the whole eyeball
+                toward the mouse.
+            */
+
+            gsap.to(
+                eyeBall,
+                {
+                    rotateY: mouseX * 18,
+
+                    rotateX: mouseY * -18,
+
+                    duration: 1,
+
+                    ease: "power3.out",
+
+                    overwrite: "auto"
+                }
+            );
+
+
+            /*
+                Move the iris toward the cursor.
+            */
+
+            gsap.to(
+                eyeIris,
+                {
+                    x: mouseX * 70,
+
+                    y: mouseY * 70,
+
+                    duration: 0.8,
+
+                    ease: "power3.out",
+
+                    overwrite: "auto"
+                }
+            );
+
+        }
+    );
+
+}
+   
     /* =====================================================
        15. SCROLL REVEAL ANIMATIONS
     ====================================================== */
