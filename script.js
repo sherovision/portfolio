@@ -127,15 +127,15 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
 
         [
-            "AI Creative",
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=88",
-            "DIGITAL FUTURE"
+            "SB Tattoo",
+            "images/sb.png",
+            "Logo Design"
         ],
 
         [
-            "Campaign",
-            "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1000&q=88",
-            "ORBIT"
+            "Mathaka Pada",
+            "images/mathaka.png",
+            "Event Poster"
         ]
 
     ];
