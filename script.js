@@ -81,25 +81,25 @@ document.addEventListener("DOMContentLoaded", function () {
         [
             "Event Poster",
             "images/Anda.png",
-            "NOVA"
+            "Event Poster"
         ],
 
         [
             "Campaign",
-            "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1000&q=88",
-            "WILD COMFORT"
+            "images/Cake.png",
+            "Logo Design"
         ],
 
         [
             "Digital",
-            "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1000&q=88",
-            "VANTAGE"
+            "images/arachchi.png",
+            "Tution Poster"
         ],
 
         [
             "Content",
-            "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=88",
-            "EMBER"
+            "images/thaala.png",
+            "Logo Design"
         ],
 
         [
