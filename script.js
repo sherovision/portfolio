@@ -121,9 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
 
         [
-            "Branding",
-            "https://images.unsplash.com/photo-1553484771-047a44eee27b?auto=format&fit=crop&w=1000&q=88",
-            "STUDIO 08"
+            "Lotus Glow",
+            "images/Lotus.png",
+            "Web Banner"
         ],
 
         [
