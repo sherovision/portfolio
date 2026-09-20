@@ -669,18 +669,24 @@ button {
     overflow: hidden;
 }
 
+/* =========================================================
+   PROJECT ROW SIZE
+========================================================= */
+
 .top-row {
-    height: 360px;
+    height: 380px;
 }
 
 .bottom-row {
-    height: 360px;
+    height: 380px;
 
     margin-top: 10px;
 }
 
 
-/* The actual animated track */
+/* =========================================================
+   ANIMATED PROJECT TRACK
+========================================================= */
 
 .project-row {
     display: flex;
@@ -694,14 +700,14 @@ button {
 }
 
 
-/* Individual project */
+/* =========================================================
+   PROJECT CARD
+========================================================= */
 
 .project-card {
     position: relative;
 
-    flex: 0 0 auto;
-
-    height: 100%;
+    flex-shrink: 0;
 
     overflow: hidden;
 
@@ -710,6 +716,35 @@ button {
     background: #111;
 }
 
+
+/* =========================================================
+   VERTICAL PROJECT
+========================================================= */
+
+.project-card.vertical {
+    width: 280px;
+    height: 380px;
+
+    flex: 0 0 280px;
+}
+
+
+/* =========================================================
+   WIDE PROJECT
+========================================================= */
+
+.project-card.wide {
+    width: 560px;
+    height: 380px;
+
+    flex: 0 0 560px;
+}
+
+
+/* =========================================================
+   PROJECT IMAGE
+========================================================= */
+
 .project-card img {
     display: block;
 
@@ -717,67 +752,17 @@ button {
     height: 100%;
 
     object-fit: cover;
+    object-position: center;
 
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+
+/* Image zoom only — card size never changes */
 
 .project-card:hover img {
-    transform: scale(1.06);
-}
-
-
-/* Different card sizes make the gallery feel
-   like the reference design */
-
-.top-row .project-card:nth-child(1),
-.top-row .project-card:nth-child(6) {
-    width: 260px;
-}
-
-.top-row .project-card:nth-child(2),
-.top-row .project-card:nth-child(7) {
-    width: 180px;
-}
-
-.top-row .project-card:nth-child(3),
-.top-row .project-card:nth-child(8) {
-    width: 550px;
-}
-
-.top-row .project-card:nth-child(4),
-.top-row .project-card:nth-child(9) {
-    width: 300px;
-}
-
-.top-row .project-card:nth-child(5),
-.top-row .project-card:nth-child(10) {
-    width: 230px;
-}
-
-
-.bottom-row .project-card:nth-child(1),
-.bottom-row .project-card:nth-child(6) {
-    width: 550px;
-}
-
-.bottom-row .project-card:nth-child(2),
-.bottom-row .project-card:nth-child(7) {
-    width: 300px;
-}
-
-.bottom-row .project-card:nth-child(3),
-.bottom-row .project-card:nth-child(8) {
-    width: 210px;
-}
-
-.bottom-row .project-card:nth-child(4),
-.bottom-row .project-card:nth-child(9) {
-    width: 450px;
-}
-
-.bottom-row .project-card:nth-child(5),
-.bottom-row .project-card:nth-child(10) {
-    width: 270px;
+    transform: scale(1.05);
 }
 
 
@@ -1495,59 +1480,40 @@ button {
     }
 
 
-    /* Smaller cards on mobile */
+    /* =========================================================
+   MOBILE PROJECT GALLERY
+========================================================= */
 
-    .top-row .project-card:nth-child(1),
-    .top-row .project-card:nth-child(6) {
-        width: 165px;
-    }
-
-    .top-row .project-card:nth-child(2),
-    .top-row .project-card:nth-child(7) {
-        width: 125px;
-    }
-
-    .top-row .project-card:nth-child(3),
-    .top-row .project-card:nth-child(8) {
-        width: 350px;
-    }
-
-    .top-row .project-card:nth-child(4),
-    .top-row .project-card:nth-child(9) {
-        width: 190px;
-    }
-
-    .top-row .project-card:nth-child(5),
-    .top-row .project-card:nth-child(10) {
-        width: 150px;
-    }
+.top-row,
+.bottom-row {
+    height: 250px;
+}
 
 
-    .bottom-row .project-card:nth-child(1),
-    .bottom-row .project-card:nth-child(6) {
-        width: 350px;
-    }
+.bottom-row {
+    margin-top: 7px;
+}
 
-    .bottom-row .project-card:nth-child(2),
-    .bottom-row .project-card:nth-child(7) {
-        width: 190px;
-    }
 
-    .bottom-row .project-card:nth-child(3),
-    .bottom-row .project-card:nth-child(8) {
-        width: 145px;
-    }
+/* Vertical cards */
 
-    .bottom-row .project-card:nth-child(4),
-    .bottom-row .project-card:nth-child(9) {
-        width: 290px;
-    }
+.project-card.vertical {
+    width: 180px;
+    height: 250px;
 
-    .bottom-row .project-card:nth-child(5),
-    .bottom-row .project-card:nth-child(10) {
-        width: 180px;
-    }
+    flex: 0 0 180px;
+}
 
+
+/* Wide cards */
+
+.project-card.wide {
+    width: 360px;
+    height: 250px;
+
+    flex: 0 0 360px;
+}
+   
     .project-information {
         opacity: 1;
 
