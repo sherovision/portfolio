@@ -669,10 +669,6 @@ button {
     overflow: hidden;
 }
 
-/* =========================================================
-   PROJECT ROW SIZE
-========================================================= */
-
 .top-row {
     height: 380px;
 }
@@ -684,9 +680,7 @@ button {
 }
 
 
-/* =========================================================
-   ANIMATED PROJECT TRACK
-========================================================= */
+/* The actual animated track */
 
 .project-row {
     display: flex;
@@ -700,14 +694,14 @@ button {
 }
 
 
-/* =========================================================
-   PROJECT CARD
-========================================================= */
+/* Individual project */
 
 .project-card {
     position: relative;
 
     flex-shrink: 0;
+
+    height: 100%;
 
     overflow: hidden;
 
@@ -717,33 +711,23 @@ button {
 }
 
 
-/* =========================================================
-   VERTICAL PROJECT
-========================================================= */
+/* Vertical project card */
 
 .project-card.vertical {
     width: 280px;
-    height: 380px;
 
     flex: 0 0 280px;
 }
 
 
-/* =========================================================
-   WIDE PROJECT
-========================================================= */
+/* Wide project card */
 
 .project-card.wide {
     width: 560px;
-    height: 380px;
 
     flex: 0 0 560px;
 }
 
-
-/* =========================================================
-   PROJECT IMAGE
-========================================================= */
 
 .project-card img {
     display: block;
@@ -754,15 +738,11 @@ button {
     object-fit: cover;
     object-position: center;
 
-    transition:
-        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-
-/* Image zoom only — card size never changes */
-
 .project-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
 
@@ -1472,7 +1452,7 @@ button {
 
     .top-row,
     .bottom-row {
-        height: 230px;
+        height: 250px;
     }
 
     .bottom-row {
@@ -1480,40 +1460,24 @@ button {
     }
 
 
-    /* =========================================================
-   MOBILE PROJECT GALLERY
-========================================================= */
+    /* Vertical project card on mobile */
 
-.top-row,
-.bottom-row {
-    height: 250px;
-}
+    .project-card.vertical {
+        width: 180px;
 
-
-.bottom-row {
-    margin-top: 7px;
-}
+        flex: 0 0 180px;
+    }
 
 
-/* Vertical cards */
+    /* Wide project card on mobile */
 
-.project-card.vertical {
-    width: 180px;
-    height: 250px;
+    .project-card.wide {
+        width: 360px;
 
-    flex: 0 0 180px;
-}
+        flex: 0 0 360px;
+    }
 
 
-/* Wide cards */
-
-.project-card.wide {
-    width: 360px;
-    height: 250px;
-
-    flex: 0 0 360px;
-}
-   
     .project-information {
         opacity: 1;
 
