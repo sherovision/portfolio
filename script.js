@@ -79,25 +79,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const portfolioProjects = [
 
         [
-            "Event Poster",
+            "Rajinata Anda",
             "images/Anda.png",
             "Event Poster"
         ],
 
         [
-            "Campaign",
+            "Cake Cuddles",
             "images/Cake.png",
             "Logo Design"
         ],
 
         [
-            "Digital",
+            "ET Archchi",
             "images/arachchi.png",
             "Tution Poster"
         ],
 
         [
-            "Content",
+            "Thaala Events",
             "images/thaala.png",
             "Logo Design"
         ],
@@ -109,15 +109,15 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
 
         [
-            "Social Media",
+            "Rookantha",
             "images/rookantha.png",
             "Event Poster"
         ],
 
         [
-            "Poster Design",
-            "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1000&q=88",
-            "AFTER DARK"
+            "Mystic Brew",
+            "images/Brew.png",
+            "Logo Design"
         ],
 
         [
