@@ -82,60 +82,70 @@ document.addEventListener("DOMContentLoaded", function () {
             "Rajinata Anda",
             "images/Anda.png",
             "Event Poster"
+            "wide"
         ],
 
         [
             "Cake Cuddles",
             "images/Cake.png",
             "Logo Design"
+            "vertical"
         ],
 
         [
             "ET Archchi",
             "images/arachchi.png",
             "Tution Poster"
+            "wide"
         ],
 
         [
             "Thaala Events",
             "images/thaala.png",
             "Logo Design"
+            "vertical"
         ],
 
         [
             "Motion",
             "images/eminva.png",
             "Logo Design"
+            "wide"
         ],
 
         [
             "Rookantha",
             "images/rookantha.png",
             "Event Poster"
+            "vertical"
         ],
 
         [
             "Mystic Brew",
             "images/Brew.png",
             "Logo Design"
+            "wide"
         ],
 
         [
             "Lotus Glow",
             "images/Lotus.png",
             "Web Banner"
+            "vertical"
         ],
 
         [
             "SB Tattoo",
             "images/sb.png",
             "Logo Design"
+            "wide"
         ],
 
         [
             "Mathaka Pada",
             "images/mathaka.png",
             "Event Poster"
+            "vertical"
         ]
 
     ];
@@ -150,44 +160,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function createProjectCard(project) {
 
-        const category = project[0];
-        const image = project[1];
-        const projectName = project[2];
+    /*
+        Project information
+    */
+
+    const category = project[0];
+
+    const image = project[1];
+
+    const projectName = project[2];
+
+    const projectSize = project[3];
 
 
-        return `
-            <a href="#contact" class="project-card">
+    /*
+        Create the project card.
 
-                <img
-                    src="${image}"
-                    alt="${projectName}"
-                    loading="lazy"
-                >
+        projectSize will be either:
+        "wide"
+        or
+        "vertical"
+    */
 
-                <div class="project-information">
+    return `
+        <a
+            href="#contact"
+            class="project-card ${projectSize}"
+        >
 
-                    <div>
+            <img
+                src="${image}"
+                alt="${projectName}"
+                loading="lazy"
+            >
 
-                        <small>
-                            ${category}
-                        </small>
+            <div class="project-information">
 
-                        <strong>
-                            ${projectName}
-                        </strong>
-
-                    </div>
+                <div>
 
                     <small>
-                        VIEW ↗
+                        ${category}
                     </small>
+
+                    <strong>
+                        ${projectName}
+                    </strong>
 
                 </div>
 
-            </a>
-        `;
+                <small>
+                    VIEW ↗
+                </small>
 
-    }
+            </div>
+
+        </a>
+    `;
+
+}
 
 
     /* =====================================================
