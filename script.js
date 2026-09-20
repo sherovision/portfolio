@@ -81,71 +81,71 @@ document.addEventListener("DOMContentLoaded", function () {
         [
             "Rajinata Anda",
             "images/Anda.png",
-            "Event Poster"
-            "wide"
+            "Event Poster",
+            "vertical"
         ],
 
         [
             "Cake Cuddles",
             "images/Cake.png",
-            "Logo Design"
-            "vertical"
+            "Logo Design",
+            "wide"
         ],
 
         [
             "ET Archchi",
             "images/arachchi.png",
-            "Tution Poster"
-            "wide"
+            "Tution Poster",
+            "vertical"
         ],
 
         [
             "Thaala Events",
             "images/thaala.png",
-            "Logo Design"
-            "vertical"
+            "Logo Design",
+            "wide"
         ],
 
         [
             "Motion",
             "images/eminva.png",
-            "Logo Design"
+            "Logo Design",
             "wide"
         ],
 
         [
             "Rookantha",
             "images/rookantha.png",
-            "Event Poster"
+            "Event Poster",
             "vertical"
         ],
 
         [
             "Mystic Brew",
             "images/Brew.png",
-            "Logo Design"
-            "wide"
+            "Logo Design",
+            "vertical"
         ],
 
         [
             "Lotus Glow",
             "images/Lotus.png",
-            "Web Banner"
-            "vertical"
+            "Web Banner",
+            "wide"
         ],
 
         [
             "SB Tattoo",
             "images/sb.png",
-            "Logo Design"
-            "wide"
+            "Logo Design",
+            "vertical"
         ],
 
         [
             "Mathaka Pada",
             "images/mathaka.png",
-            "Event Poster"
-            "vertical"
+            "Event Poster",
+            "wide"
         ]
 
     ];
@@ -160,64 +160,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function createProjectCard(project) {
 
-    /*
-        Project information
-    */
-
-    const category = project[0];
-
-    const image = project[1];
-
-    const projectName = project[2];
-
-    const projectSize = project[3];
+        const category = project[0];
+        const image = project[1];
+        const projectName = project[2];
+        const cardSize = project[3] || "vertical";
 
 
-    /*
-        Create the project card.
+        return `
+            <a href="#contact" class="project-card ${cardSize}">
 
-        projectSize will be either:
-        "wide"
-        or
-        "vertical"
-    */
+                <img
+                    src="${image}"
+                    alt="${projectName}"
+                    loading="lazy"
+                >
 
-    return `
-        <a
-            href="#contact"
-            class="project-card ${projectSize}"
-        >
+                <div class="project-information">
 
-            <img
-                src="${image}"
-                alt="${projectName}"
-                loading="lazy"
-            >
+                    <div>
 
-            <div class="project-information">
+                        <small>
+                            ${category}
+                        </small>
 
-                <div>
+                        <strong>
+                            ${projectName}
+                        </strong>
+
+                    </div>
 
                     <small>
-                        ${category}
+                        VIEW ↗
                     </small>
-
-                    <strong>
-                        ${projectName}
-                    </strong>
 
                 </div>
 
-                <small>
-                    VIEW ↗
-                </small>
+            </a>
+        `;
 
-            </div>
-
-        </a>
-    `;
-
-}
+    }
 
 
     /* =====================================================
