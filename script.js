@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const portfolioProjects = [
 
         [
-            "Brand Identity",
-            "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1000&q=88",
+            "Event Poster",
+            "images/Anda.png",
             "NOVA"
         ],
 
