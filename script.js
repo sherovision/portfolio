@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         [
             "SB Tattoo",
-            "images/sb.png",
+            "images/mathaka.png",
             "Logo Design",
             "vertical"
         ],
