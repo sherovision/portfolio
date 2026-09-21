@@ -93,9 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
 
         [
-            "ET Archchi",
-            "images/arachchi.png",
-            "Tution Poster",
+            "Dream Night",
+            "images/damjor.png",
+            "Event Poster",
             "vertical"
         ],
 
