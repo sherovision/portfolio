@@ -87,14 +87,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         [
             "Cake Cuddles",
-            "images/Cake.png",
+            "images/cakecuddle.png",
             "Logo Design",
             "wide"
         ],
 
         [
             "Dream Night",
-            "images/damjor.png",
+            "images/Dream.png",
             "Event Poster",
             "vertical"
         ],
