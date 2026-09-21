@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         [
             "Thaala Events",
-            "images/thaala.png",
+            "images/thaalaa.png",
             "Logo Design",
             "wide"
         ],
