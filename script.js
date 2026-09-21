@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
 
         [
-            "Motion",
+            "Eminva",
             "images/eminva.png",
             "Logo Design",
             "wide"
@@ -142,9 +142,9 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
 
         [
-            "Mathaka Pada",
-            "images/mathaka.png",
-            "Event Poster",
+            "Nipuni",
+            "images/nipuni.png",
+            "Logo designer",
             "wide"
         ]
 
