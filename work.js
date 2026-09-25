@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add or replace projects here. Use the same image paths as your current website.
     const projects = [
         {brand:"Rajinata Anda", image:"images/Anda.png", name:"Event Poster", category:"graphic-design", size:"vertical"},
+        {brand:"Handewaka", image:"images/handewaka.png", name:"Event Poster", category:"graphic-design", size:"vertical"},
         {brand:"Cake Cuddles", image:"images/cakecuddle.png", name:"Logo Design", category:"branding", size:"wide"},
         {brand:"Dream Night", image:"images/Dream.png", name:"Event Poster", category:"graphic-design", size:"vertical"},
         {brand:"Thaala Events", image:"images/thaalaa.png", name:"Logo Design", category:"branding", size:"wide"},
