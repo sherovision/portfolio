@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {brand:"Rookantha", image:"images/rookantha.png", name:"Event Poster", category:"graphic-design", size:"vertical"},
         {brand:"Mystic Brew", image:"images/Brew.png", name:"Logo Design", category:"branding", size:"vertical"},
         {brand:"Lotus Glow", image:"images/Lotus.png", name:"Web Banner", category:"graphic-design", size:"wide"},
-        {brand:"X banner", image:"images/xbanner.jpg", name:"banner", category:"graphic-design", size:"wide"},
+        {brand:"X banner", image:"images/xbanner.jpg", name:"banner", category:"graphic-design", size:"vertical"},
         {brand:"SB Tattoo", image:"images/mathaka.png", name:"Logo Design", category:"branding", size:"vertical"},
         {brand:"Nipuni", image:"images/nipuni.png", name:"Logo Design", category:"branding", size:"wide"}
     ];
